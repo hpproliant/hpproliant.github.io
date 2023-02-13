@@ -1,0 +1,67 @@
+2023-02-13 23:15:10.674 7 WARNING keystonemiddleware.auth_token [-] AuthToken middleware is set with keystone_authtoken.service_token_roles_required set to False. This is backwards compatible but deprecated behaviour. Please set this to True.
+2023-02-13 23:15:10.707 7 INFO oslo.service.wsgi [-] ironic_inspector listening on 169.16.1.147:5050
+2023-02-13 23:15:10.770 7 INFO eventlet.wsgi.server [-] (7) wsgi starting up on http://169.16.1.147:5050
+2023-02-13 23:15:10.835 7 WARNING ironic_inspector.conductor.manager [-] Introspection data will not be stored. Change "[processing] store_data" option if this is not the desired behavior
+2023-02-13 23:15:10.991 7 INFO ironic_inspector.conductor.manager [-] Coordination backend cannot be started, assuming no other instances are running. Error: [Errno 111] ECONNREFUSED (with errno ECONNREFUSED [111])
+2023-02-13 23:15:11.004 7 INFO ironic_inspector.conductor.manager [-] Enabled processing hooks: ['ramdisk_error', 'root_disk_selection', 'scheduler', 'validate_interfaces', 'capabilities', 'pci_devices']
+2023-02-13 23:15:11.010 7 INFO ironic_inspector.common.rpc_service [-] Created RPC server for service ironic_inspector.conductor on host host-169-16-1-147.
+2023-02-13 23:22:58.864 7 INFO ironic_inspector.plugins.standard [-] [node: MAC ec:b1:d7:83:74:40 BMC 169.16.1.19] Using network interface(s): eno1 {'ip': '169.16.1.101', 'mac': 'ec:b1:d7:83:74:40', 'client_id': None, 'pxe': True}
+2023-02-13 23:22:58.911 7 INFO ironic_inspector.utils [-] Could not find a node for attributes {'bmc_address': ['169.16.1.19', 'fe80::3a63:bbff:fe3a:f7e4'], 'mac': ['ec:b1:d7:83:74:43', 'ec:b1:d7:83:74:41', 'ec:b1:d7:83:74:42', 'ec:b1:d7:83:74:40']}
+2023-02-13 23:22:58.914 7 INFO ironic_inspector.process [-] [node: MAC ec:b1:d7:83:74:40 BMC 169.16.1.19] Ramdisk logs were stored in file unknown_20230214-042258.913169.tar.gz
+2023-02-13 23:22:58.914 7 ERROR ironic_inspector.utils [-] [node: MAC ec:b1:d7:83:74:40 BMC 169.16.1.19] The following failures happened during running pre-processing hooks:
+Look up error: Could not find a node for attributes {'bmc_address': ['169.16.1.19', 'fe80::3a63:bbff:fe3a:f7e4'], 'mac': ['ec:b1:d7:83:74:43', 'ec:b1:d7:83:74:41', 'ec:b1:d7:83:74:42', 'ec:b1:d7:83:74:40']}
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main [None req-a1845864-bb56-4f15-b557-2dbd66724139 - - - - - -] Internal server error: oslo_messaging.rpc.client.RemoteError: Remote error: Error The following failures happened during running pre-processing hooks:
+Look up error: Could not find a node for attributes {'bmc_address': ['169.16.1.19', 'fe80::3a63:bbff:fe3a:f7e4'], 'mac': ['ec:b1:d7:83:74:43', 'ec:b1:d7:83:74:41', 'ec:b1:d7:83:74:42', 'ec:b1:d7:83:74:40']}
+['Traceback (most recent call last):\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/rpc/server.py", line 241, in inner\n    return func(*args, **kwargs)\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/conductor/manager.py", line 210, in do_continue\n    return process.process(data)\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/process.py", line 218, in process\n    raise utils.Error(msg, node_info=node_info, data=introspection_data)\n', "ironic_inspector.utils.Error: The following failures happened during running pre-processing hooks:\nLook up error: Could not find a node for attributes {'bmc_address': ['169.16.1.19', 'fe80::3a63:bbff:fe3a:f7e4'], 'mac': ['ec:b1:d7:83:74:43', 'ec:b1:d7:83:74:41', 'ec:b1:d7:83:74:42', 'ec:b1:d7:83:74:40']}\n"].
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main Traceback (most recent call last):
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/main.py", line 186, in wrapper
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main     return func(*args, **kwargs)
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/main.py", line 303, in wrapper
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main     return func(*args, **kwargs)
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/main.py", line 353, in api_continue
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main     result = client.call({}, 'do_continue', data=data)
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/rpc/client.py", line 528, in call
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main     return self.prepare().call(ctxt, method, **kwargs)
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/rpc/client.py", line 189, in call
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main     result = self.transport._send(
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/transport.py", line 123, in _send
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main     return self._driver.send(target, ctxt, message,
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 689, in send
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main     return self._send(target, ctxt, message, wait_for_reply, timeout,
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 681, in _send
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main     raise result
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main oslo_messaging.rpc.client.RemoteError: Remote error: Error The following failures happened during running pre-processing hooks:
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main Look up error: Could not find a node for attributes {'bmc_address': ['169.16.1.19', 'fe80::3a63:bbff:fe3a:f7e4'], 'mac': ['ec:b1:d7:83:74:43', 'ec:b1:d7:83:74:41', 'ec:b1:d7:83:74:42', 'ec:b1:d7:83:74:40']}
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main ['Traceback (most recent call last):\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/rpc/server.py", line 241, in inner\n    return func(*args, **kwargs)\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/conductor/manager.py", line 210, in do_continue\n    return process.process(data)\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/process.py", line 218, in process\n    raise utils.Error(msg, node_info=node_info, data=introspection_data)\n', "ironic_inspector.utils.Error: The following failures happened during running pre-processing hooks:\nLook up error: Could not find a node for attributes {'bmc_address': ['169.16.1.19', 'fe80::3a63:bbff:fe3a:f7e4'], 'mac': ['ec:b1:d7:83:74:43', 'ec:b1:d7:83:74:41', 'ec:b1:d7:83:74:42', 'ec:b1:d7:83:74:40']}\n"].
+2023-02-13 23:22:58.923 7 ERROR ironic_inspector.main 
+2023-02-13 23:22:58.931 7 INFO eventlet.wsgi.server [None req-a1845864-bb56-4f15-b557-2dbd66724139 - - - - - -] 169.16.1.101 "POST /v1/continue HTTP/1.1" status: 500  len: 308 time: 0.1963689
+2023-02-13 23:29:12.464 7 INFO ironic_inspector.plugins.standard [-] [node: MAC 70:10:6f:b4:cd:b6 BMC 169.16.1.14] Using network interface(s): eno1 {'ip': '169.16.1.230', 'mac': '70:10:6f:b4:cd:b6', 'client_id': None, 'pxe': True}
+2023-02-13 23:29:12.479 7 INFO ironic_inspector.utils [-] Could not find a node for attributes {'bmc_address': ['169.16.1.14'], 'mac': ['70:10:6f:b4:cd:b6', '70:10:6f:b4:cd:b7']}
+2023-02-13 23:29:12.482 7 INFO ironic_inspector.process [-] [node: MAC 70:10:6f:b4:cd:b6 BMC 169.16.1.14] Ramdisk logs were stored in file unknown_20230214-042912.481148.tar.gz
+2023-02-13 23:29:12.482 7 ERROR ironic_inspector.utils [-] [node: MAC 70:10:6f:b4:cd:b6 BMC 169.16.1.14] The following failures happened during running pre-processing hooks:
+Look up error: Could not find a node for attributes {'bmc_address': ['169.16.1.14'], 'mac': ['70:10:6f:b4:cd:b6', '70:10:6f:b4:cd:b7']}
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main [None req-e1bb1a04-ee51-435b-b109-ce3dc8d1ef81 - - - - - -] Internal server error: oslo_messaging.rpc.client.RemoteError: Remote error: Error The following failures happened during running pre-processing hooks:
+Look up error: Could not find a node for attributes {'bmc_address': ['169.16.1.14'], 'mac': ['70:10:6f:b4:cd:b6', '70:10:6f:b4:cd:b7']}
+['Traceback (most recent call last):\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/rpc/server.py", line 241, in inner\n    return func(*args, **kwargs)\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/conductor/manager.py", line 210, in do_continue\n    return process.process(data)\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/process.py", line 218, in process\n    raise utils.Error(msg, node_info=node_info, data=introspection_data)\n', "ironic_inspector.utils.Error: The following failures happened during running pre-processing hooks:\nLook up error: Could not find a node for attributes {'bmc_address': ['169.16.1.14'], 'mac': ['70:10:6f:b4:cd:b6', '70:10:6f:b4:cd:b7']}\n"].
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main Traceback (most recent call last):
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/main.py", line 186, in wrapper
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main     return func(*args, **kwargs)
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/main.py", line 303, in wrapper
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main     return func(*args, **kwargs)
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/main.py", line 353, in api_continue
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main     result = client.call({}, 'do_continue', data=data)
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/rpc/client.py", line 528, in call
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main     return self.prepare().call(ctxt, method, **kwargs)
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/rpc/client.py", line 189, in call
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main     result = self.transport._send(
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/transport.py", line 123, in _send
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main     return self._driver.send(target, ctxt, message,
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 689, in send
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main     return self._send(target, ctxt, message, wait_for_reply, timeout,
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 681, in _send
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main     raise result
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main oslo_messaging.rpc.client.RemoteError: Remote error: Error The following failures happened during running pre-processing hooks:
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main Look up error: Could not find a node for attributes {'bmc_address': ['169.16.1.14'], 'mac': ['70:10:6f:b4:cd:b6', '70:10:6f:b4:cd:b7']}
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main ['Traceback (most recent call last):\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/rpc/server.py", line 241, in inner\n    return func(*args, **kwargs)\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/conductor/manager.py", line 210, in do_continue\n    return process.process(data)\n', '  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/process.py", line 218, in process\n    raise utils.Error(msg, node_info=node_info, data=introspection_data)\n', "ironic_inspector.utils.Error: The following failures happened during running pre-processing hooks:\nLook up error: Could not find a node for attributes {'bmc_address': ['169.16.1.14'], 'mac': ['70:10:6f:b4:cd:b6', '70:10:6f:b4:cd:b7']}\n"].
+2023-02-13 23:29:12.490 7 ERROR ironic_inspector.main 
+2023-02-13 23:29:12.496 7 INFO eventlet.wsgi.server [None req-e1bb1a04-ee51-435b-b109-ce3dc8d1ef81 - - - - - -] 169.16.1.230 "POST /v1/continue HTTP/1.1" status: 500  len: 308 time: 0.0577171
