@@ -1,0 +1,643 @@
+2023-02-13 21:22:26.131972 2023-02-13 21:22:26.128 27 WARNING keystone.common.rbac_enforcer.enforcer [None req-a148b388-b7e0-4798-9f50-75b0fbf65601 0f95cfd7c8bc4da28cfc28a2b7a247da - - all default -] Deprecated policy rules found. Use oslopolicy-policy-generator and oslopolicy-policy-upgrade to detect and resolve deprecated policies in your configuration.\x1b[00m
+2023-02-13 21:22:26.558443 2023-02-13 21:22:26.556 28 WARNING keystone.common.rbac_enforcer.enforcer [None req-d7151529-9134-4428-88e2-351df9440426 0f95cfd7c8bc4da28cfc28a2b7a247da - - all default -] Deprecated policy rules found. Use oslopolicy-policy-generator and oslopolicy-policy-upgrade to detect and resolve deprecated policies in your configuration.\x1b[00m
+2023-02-13 21:25:51.823109 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application [None req-540b95aa-b1bb-4dd5-9168-745882e7b01c 0f95cfd7c8bc4da28cfc28a2b7a247da - - all default -] Could not find project: service.: keystone.exception.ProjectNotFound: Could not find project: service.
+2023-02-13 21:25:51.823165 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:25:51.823177 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:25:51.823188 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:25:51.823198 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:25:51.823209 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:25:51.823218 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:25:51.823228 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:25:51.823245 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:25:51.823258 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:25:51.823268 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:25:51.823278 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:25:51.823288 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/projects.py", line 151, in get
+2023-02-13 21:25:51.823298 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     return self._get_project(project_id)
+2023-02-13 21:25:51.823308 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/projects.py", line 107, in _get_project
+2023-02-13 21:25:51.823318 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     project = PROVIDERS.resource_api.get_project(project_id)
+2023-02-13 21:25:51.823328 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:25:51.823338 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:25:51.823347 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:25:51.823357 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:25:51.823433 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:25:51.823451 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:25:51.823461 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:25:51.823472 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:25:51.823482 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:25:51.823492 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:25:51.823501 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:25:51.823511 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:25:51.823521 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:25:51.823531 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:25:51.823540 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:25:51.823550 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:25:51.823566 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/core.py", line 903, in get_project
+2023-02-13 21:25:51.823582 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     return self.driver.get_project(project_id)
+2023-02-13 21:25:51.823598 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/backends/sql.py", line 49, in get_project
+2023-02-13 21:25:51.823617 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     return self._get_project(session, project_id).to_dict()
+2023-02-13 21:25:51.823629 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/backends/sql.py", line 44, in _get_project
+2023-02-13 21:25:51.823659 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application     raise exception.ProjectNotFound(project_id=project_id)
+2023-02-13 21:25:51.823671 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application keystone.exception.ProjectNotFound: Could not find project: service.
+2023-02-13 21:25:51.823681 2023-02-13 21:25:51.811 28 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:26:00.481949 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application [None req-9d08293d-0e1a-4aba-bd83-0a241ffa9146 0f95cfd7c8bc4da28cfc28a2b7a247da - - all default -] Could not find project: service.: keystone.exception.ProjectNotFound: Could not find project: service.
+2023-02-13 21:26:00.482000 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:26:00.482012 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:26:00.482022 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:26:00.482057 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:26:00.482070 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:26:00.482080 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:26:00.482089 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:26:00.482104 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:26:00.482115 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:26:00.482125 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:26:00.482134 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:26:00.482143 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/projects.py", line 151, in get
+2023-02-13 21:26:00.482153 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     return self._get_project(project_id)
+2023-02-13 21:26:00.482162 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/projects.py", line 107, in _get_project
+2023-02-13 21:26:00.482171 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     project = PROVIDERS.resource_api.get_project(project_id)
+2023-02-13 21:26:00.482180 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:26:00.482190 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:26:00.482204 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:26:00.482213 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:26:00.482222 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:26:00.482232 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:26:00.482241 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:26:00.482251 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:26:00.482260 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:26:00.482269 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:26:00.482278 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:26:00.482287 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:26:00.482296 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:26:00.482342 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:26:00.482354 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:26:00.482363 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:26:00.482409 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/core.py", line 903, in get_project
+2023-02-13 21:26:00.482427 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     return self.driver.get_project(project_id)
+2023-02-13 21:26:00.482436 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/backends/sql.py", line 49, in get_project
+2023-02-13 21:26:00.482446 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     return self._get_project(session, project_id).to_dict()
+2023-02-13 21:26:00.482455 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/backends/sql.py", line 44, in _get_project
+2023-02-13 21:26:00.482464 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application     raise exception.ProjectNotFound(project_id=project_id)
+2023-02-13 21:26:00.482474 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application keystone.exception.ProjectNotFound: Could not find project: service.
+2023-02-13 21:26:00.482483 2023-02-13 21:26:00.470 27 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:26:14.711751 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application [None req-85e5957a-33ae-4c5a-8071-a0ec390bbe78 0f95cfd7c8bc4da28cfc28a2b7a247da - - all default -] Could not find role: admin.: keystone.exception.RoleNotFound: Could not find role: admin.
+2023-02-13 21:26:14.711800 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:26:14.711812 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:26:14.711822 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:26:14.711831 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:26:14.711841 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:26:14.711851 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:26:14.711860 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:26:14.711877 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:26:14.711890 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:26:14.711899 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:26:14.711919 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:26:14.711950 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/roles.py", line 50, in get
+2023-02-13 21:26:14.711985 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     return self._get_role(role_id)
+2023-02-13 21:26:14.711996 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/roles.py", line 70, in _get_role
+2023-02-13 21:26:14.712006 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     ENFORCER.enforce_call(action='identity:get_role')
+2023-02-13 21:26:14.712037 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/rbac_enforcer/enforcer.py", line 402, in enforce_call
+2023-02-13 21:26:14.712047 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     policy_dict.update(cls._extract_member_target_data(
+2023-02-13 21:26:14.712057 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/rbac_enforcer/enforcer.py", line 234, in _extract_member_target_data
+2023-02-13 21:26:14.712067 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     member_name: func(flask.request.view_args[key])
+2023-02-13 21:26:14.712077 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:26:14.712086 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:26:14.712096 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:26:14.712105 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:26:14.712115 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:26:14.712124 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:26:14.712134 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:26:14.712143 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:26:14.712153 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:26:14.712162 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:26:14.712171 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:26:14.712181 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:26:14.712190 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:26:14.712199 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:26:14.712209 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:26:14.712218 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:26:14.712227 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/assignment/core.py", line 1276, in get_role
+2023-02-13 21:26:14.712247 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     return self.driver.get_role(role_id)
+2023-02-13 21:26:14.712258 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/assignment/role_backends/sql.py", line 70, in get_role
+2023-02-13 21:26:14.712268 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     return self._get_role(session, role_id).to_dict()
+2023-02-13 21:26:14.712278 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/assignment/role_backends/sql.py", line 65, in _get_role
+2023-02-13 21:26:14.712287 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application     raise exception.RoleNotFound(role_id=role_id)
+2023-02-13 21:26:14.712296 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application keystone.exception.RoleNotFound: Could not find role: admin.
+2023-02-13 21:26:14.712306 2023-02-13 21:26:14.703 28 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:26:15.814432 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application [None req-b190e9b3-7fe8-4382-9789-b3496c9a2c2a 0f95cfd7c8bc4da28cfc28a2b7a247da - - all default -] Could not find user: ironic.: keystone.exception.UserNotFound: Could not find user: ironic.
+2023-02-13 21:26:15.814472 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:26:15.814483 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:26:15.814493 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:26:15.814502 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:26:15.814512 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:26:15.814522 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:26:15.814532 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:26:15.814541 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:26:15.814552 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:26:15.814561 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:26:15.814570 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:26:15.814580 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/users.py", line 182, in get
+2023-02-13 21:26:15.814589 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     return self._get_user(user_id)
+2023-02-13 21:26:15.814599 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/users.py", line 194, in _get_user
+2023-02-13 21:26:15.814608 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     ref = PROVIDERS.identity_api.get_user(user_id)
+2023-02-13 21:26:15.814617 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:26:15.814729 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:26:15.814745 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/core.py", line 414, in wrapper
+2023-02-13 21:26:15.814755 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     return f(self, *args, **kwargs)
+2023-02-13 21:26:15.814764 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/core.py", line 424, in wrapper
+2023-02-13 21:26:15.814773 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     return f(self, *args, **kwargs)
+2023-02-13 21:26:15.814782 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:26:15.814792 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:26:15.815116 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:26:15.815136 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:26:15.815146 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:26:15.815156 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:26:15.815165 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:26:15.815175 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:26:15.815184 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:26:15.815209 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:26:15.815221 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:26:15.815231 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:26:15.815240 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:26:15.815250 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:26:15.815259 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/core.py", line 1011, in get_user
+2023-02-13 21:26:15.815269 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     ref = driver.get_user(entity_id)
+2023-02-13 21:26:15.815278 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/backends/sql.py", line 200, in get_user
+2023-02-13 21:26:15.815288 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     self._get_user(session, user_id).to_dict())
+2023-02-13 21:26:15.815297 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/backends/sql.py", line 194, in _get_user
+2023-02-13 21:26:15.815307 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application     raise exception.UserNotFound(user_id=user_id)
+2023-02-13 21:26:15.815342 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application keystone.exception.UserNotFound: Could not find user: ironic.
+2023-02-13 21:26:15.815354 2023-02-13 21:26:15.808 27 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:26:16.615210 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application [None req-c3dbdff3-ab1e-4b10-8c43-7e766ec5a216 0f95cfd7c8bc4da28cfc28a2b7a247da - - all default -] Could not find project: service.: keystone.exception.ProjectNotFound: Could not find project: service.
+2023-02-13 21:26:16.615250 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:26:16.615261 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:26:16.615270 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:26:16.615280 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:26:16.615290 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:26:16.615299 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:26:16.615308 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:26:16.615318 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:26:16.615327 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:26:16.615336 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:26:16.615346 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:26:16.615361 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/projects.py", line 151, in get
+2023-02-13 21:26:16.615371 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     return self._get_project(project_id)
+2023-02-13 21:26:16.615430 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/projects.py", line 107, in _get_project
+2023-02-13 21:26:16.615441 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     project = PROVIDERS.resource_api.get_project(project_id)
+2023-02-13 21:26:16.615450 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:26:16.615459 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:26:16.615468 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:26:16.615478 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:26:16.615487 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:26:16.615497 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:26:16.615534 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:26:16.615548 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:26:16.615557 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:26:16.615566 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:26:16.615576 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:26:16.615585 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:26:16.615594 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:26:16.615603 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:26:16.615612 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:26:16.615622 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:26:16.615648 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/core.py", line 903, in get_project
+2023-02-13 21:26:16.615662 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     return self.driver.get_project(project_id)
+2023-02-13 21:26:16.615671 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/backends/sql.py", line 49, in get_project
+2023-02-13 21:26:16.615680 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     return self._get_project(session, project_id).to_dict()
+2023-02-13 21:26:16.615689 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/backends/sql.py", line 44, in _get_project
+2023-02-13 21:26:16.615698 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application     raise exception.ProjectNotFound(project_id=project_id)
+2023-02-13 21:26:16.615707 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application keystone.exception.ProjectNotFound: Could not find project: service.
+2023-02-13 21:26:16.615716 2023-02-13 21:26:16.612 27 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:26:25.239681 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application [None req-f470e103-5986-4dde-a5f3-98078ea6e2f0 0f95cfd7c8bc4da28cfc28a2b7a247da - - all default -] Could not find role: admin.: keystone.exception.RoleNotFound: Could not find role: admin.
+2023-02-13 21:26:25.239729 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:26:25.239741 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:26:25.239751 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:26:25.239760 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:26:25.239770 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:26:25.239794 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:26:25.239805 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:26:25.239822 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:26:25.239835 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:26:25.239845 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:26:25.239854 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:26:25.239863 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/roles.py", line 50, in get
+2023-02-13 21:26:25.239872 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     return self._get_role(role_id)
+2023-02-13 21:26:25.239881 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/roles.py", line 70, in _get_role
+2023-02-13 21:26:25.239891 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     ENFORCER.enforce_call(action='identity:get_role')
+2023-02-13 21:26:25.239900 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/rbac_enforcer/enforcer.py", line 402, in enforce_call
+2023-02-13 21:26:25.239910 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     policy_dict.update(cls._extract_member_target_data(
+2023-02-13 21:26:25.239919 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/rbac_enforcer/enforcer.py", line 234, in _extract_member_target_data
+2023-02-13 21:26:25.239929 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     member_name: func(flask.request.view_args[key])
+2023-02-13 21:26:25.239938 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:26:25.239947 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:26:25.239956 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:26:25.239965 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:26:25.239974 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:26:25.239984 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:26:25.239993 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:26:25.240002 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:26:25.240011 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:26:25.240021 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:26:25.240030 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:26:25.240060 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:26:25.240071 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:26:25.240080 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:26:25.240089 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:26:25.240098 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:26:25.240107 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/assignment/core.py", line 1276, in get_role
+2023-02-13 21:26:25.240116 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     return self.driver.get_role(role_id)
+2023-02-13 21:26:25.240126 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/assignment/role_backends/sql.py", line 70, in get_role
+2023-02-13 21:26:25.240135 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     return self._get_role(session, role_id).to_dict()
+2023-02-13 21:26:25.240144 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/assignment/role_backends/sql.py", line 65, in _get_role
+2023-02-13 21:26:25.240154 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application     raise exception.RoleNotFound(role_id=role_id)
+2023-02-13 21:26:25.240163 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application keystone.exception.RoleNotFound: Could not find role: admin.
+2023-02-13 21:26:25.240172 2023-02-13 21:26:25.236 28 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:26:26.177813 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application [None req-0de684a9-7b93-4b16-8866-7618417c71c7 0f95cfd7c8bc4da28cfc28a2b7a247da - - all default -] Could not find user: ironic-inspector.: keystone.exception.UserNotFound: Could not find user: ironic-inspector.
+2023-02-13 21:26:26.177852 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:26:26.177862 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:26:26.177873 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:26:26.177881 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:26:26.177900 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:26:26.177909 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:26:26.177918 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:26:26.177927 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:26:26.177937 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:26:26.177946 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:26:26.177971 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:26:26.177982 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/users.py", line 182, in get
+2023-02-13 21:26:26.177995 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     return self._get_user(user_id)
+2023-02-13 21:26:26.178004 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/users.py", line 194, in _get_user
+2023-02-13 21:26:26.178014 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     ref = PROVIDERS.identity_api.get_user(user_id)
+2023-02-13 21:26:26.178023 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:26:26.178032 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:26:26.178041 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/core.py", line 414, in wrapper
+2023-02-13 21:26:26.178051 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     return f(self, *args, **kwargs)
+2023-02-13 21:26:26.178060 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/core.py", line 424, in wrapper
+2023-02-13 21:26:26.178069 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     return f(self, *args, **kwargs)
+2023-02-13 21:26:26.178078 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:26:26.178087 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:26:26.178097 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:26:26.178106 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:26:26.178116 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:26:26.178125 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:26:26.178134 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:26:26.178143 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:26:26.178152 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:26:26.178161 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:26:26.178170 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:26:26.178179 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:26:26.178188 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:26:26.178197 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:26:26.178216 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/core.py", line 1011, in get_user
+2023-02-13 21:26:26.178227 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     ref = driver.get_user(entity_id)
+2023-02-13 21:26:26.178237 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/backends/sql.py", line 200, in get_user
+2023-02-13 21:26:26.178246 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     self._get_user(session, user_id).to_dict())
+2023-02-13 21:26:26.178255 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/backends/sql.py", line 194, in _get_user
+2023-02-13 21:26:26.178265 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application     raise exception.UserNotFound(user_id=user_id)
+2023-02-13 21:26:26.178274 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application keystone.exception.UserNotFound: Could not find user: ironic-inspector.
+2023-02-13 21:26:26.178283 2023-02-13 21:26:26.174 27 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:26:26.852737 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application [None req-f0015091-d04d-4668-a748-419b4d4c3520 0f95cfd7c8bc4da28cfc28a2b7a247da - - all default -] Could not find project: service.: keystone.exception.ProjectNotFound: Could not find project: service.
+2023-02-13 21:26:26.852773 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:26:26.852784 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:26:26.852794 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:26:26.852803 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:26:26.852812 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:26:26.852822 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:26:26.852831 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:26:26.852840 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:26:26.852850 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:26:26.852859 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:26:26.852868 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:26:26.852877 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/projects.py", line 151, in get
+2023-02-13 21:26:26.852887 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     return self._get_project(project_id)
+2023-02-13 21:26:26.852896 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/projects.py", line 107, in _get_project
+2023-02-13 21:26:26.852905 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     project = PROVIDERS.resource_api.get_project(project_id)
+2023-02-13 21:26:26.852930 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:26:26.852942 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:26:26.852951 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:26:26.852960 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:26:26.852970 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:26:26.852979 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:26:26.852988 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:26:26.852998 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:26:26.853007 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:26:26.853016 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:26:26.853025 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:26:26.853034 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:26:26.853044 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:26:26.853053 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:26:26.853062 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:26:26.853071 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:26:26.853080 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/core.py", line 903, in get_project
+2023-02-13 21:26:26.853090 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     return self.driver.get_project(project_id)
+2023-02-13 21:26:26.853099 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/backends/sql.py", line 49, in get_project
+2023-02-13 21:26:26.853108 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     return self._get_project(session, project_id).to_dict()
+2023-02-13 21:26:26.853117 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/backends/sql.py", line 44, in _get_project
+2023-02-13 21:26:26.853127 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application     raise exception.ProjectNotFound(project_id=project_id)
+2023-02-13 21:26:26.853136 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application keystone.exception.ProjectNotFound: Could not find project: service.
+2023-02-13 21:26:26.853145 2023-02-13 21:26:26.850 27 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:29:28.733681 2023-02-13 21:29:28.732 27 WARNING py.warnings [None req-f7eac16d-e63a-460c-ae93-ed8f0d90a02a 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:create_user": "(role:admin and system_scope:all) or (role:admin and token.domain.id:%(target.user.domain_id)s)" failed scope check. The token used to make the request was project scoped but the policy requires ['system', 'domain'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:28.733764   warnings.warn(msg)
+2023-02-13 21:29:28.733776 \x1b[00m
+2023-02-13 21:29:33.442830 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application [None req-fc29f732-5f83-41b9-a5e9-cab6739fdb35 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] Could not find role: admin.: keystone.exception.RoleNotFound: Could not find role: admin.
+2023-02-13 21:29:33.442884 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:29:33.442896 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:29:33.442908 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:29:33.442918 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:29:33.442928 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:29:33.442939 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:29:33.442949 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:29:33.442960 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:29:33.442970 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:29:33.442981 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:29:33.442991 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:29:33.443002 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/roles.py", line 50, in get
+2023-02-13 21:29:33.443012 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     return self._get_role(role_id)
+2023-02-13 21:29:33.443022 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/roles.py", line 70, in _get_role
+2023-02-13 21:29:33.443032 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     ENFORCER.enforce_call(action='identity:get_role')
+2023-02-13 21:29:33.443043 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/rbac_enforcer/enforcer.py", line 402, in enforce_call
+2023-02-13 21:29:33.443054 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     policy_dict.update(cls._extract_member_target_data(
+2023-02-13 21:29:33.443065 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/rbac_enforcer/enforcer.py", line 234, in _extract_member_target_data
+2023-02-13 21:29:33.443096 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     member_name: func(flask.request.view_args[key])
+2023-02-13 21:29:33.443108 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:29:33.443119 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:29:33.443129 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:29:33.443139 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:29:33.443150 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:29:33.443160 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:29:33.443171 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:29:33.443181 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:29:33.443191 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:29:33.443202 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:29:33.443212 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:29:33.443222 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:29:33.443232 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:29:33.443242 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:29:33.443252 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:29:33.443263 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:29:33.443273 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/assignment/core.py", line 1276, in get_role
+2023-02-13 21:29:33.443283 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     return self.driver.get_role(role_id)
+2023-02-13 21:29:33.443294 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/assignment/role_backends/sql.py", line 70, in get_role
+2023-02-13 21:29:33.443304 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     return self._get_role(session, role_id).to_dict()
+2023-02-13 21:29:33.443315 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/assignment/role_backends/sql.py", line 65, in _get_role
+2023-02-13 21:29:33.443325 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application     raise exception.RoleNotFound(role_id=role_id)
+2023-02-13 21:29:33.443335 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application keystone.exception.RoleNotFound: Could not find role: admin.
+2023-02-13 21:29:33.443345 2023-02-13 21:29:33.439 28 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:29:33.621720 2023-02-13 21:29:33.620 27 WARNING py.warnings [None req-52244ef3-dcad-414b-9d07-32e5d275c556 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:list_roles": "role:reader and system_scope:all" failed scope check. The token used to make the request was project scoped but the policy requires ['system'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:33.621800   warnings.warn(msg)
+2023-02-13 21:29:33.621812 \x1b[00m
+2023-02-13 21:29:33.887359 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application [None req-6a80f443-ed4e-4c70-9833-a488c266a88d 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] Could not find user: neutron.: keystone.exception.UserNotFound: Could not find user: neutron.
+2023-02-13 21:29:33.887427 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:29:33.887458 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:29:33.887478 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:29:33.887494 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:29:33.887508 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:29:33.887519 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:29:33.887529 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:29:33.887539 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:29:33.887550 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:29:33.887560 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:29:33.887571 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:29:33.887581 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/users.py", line 182, in get
+2023-02-13 21:29:33.887591 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     return self._get_user(user_id)
+2023-02-13 21:29:33.887601 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/users.py", line 194, in _get_user
+2023-02-13 21:29:33.887638 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     ref = PROVIDERS.identity_api.get_user(user_id)
+2023-02-13 21:29:33.887653 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:29:33.887663 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:29:33.887673 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/core.py", line 414, in wrapper
+2023-02-13 21:29:33.887684 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     return f(self, *args, **kwargs)
+2023-02-13 21:29:33.887712 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/core.py", line 424, in wrapper
+2023-02-13 21:29:33.887725 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     return f(self, *args, **kwargs)
+2023-02-13 21:29:33.887735 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:29:33.887745 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:29:33.887756 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:29:33.887766 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:29:33.887776 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:29:33.887787 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:29:33.887797 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:29:33.887807 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:29:33.887818 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:29:33.887828 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:29:33.887838 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:29:33.887849 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:29:33.887859 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:29:33.887869 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:29:33.887879 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/core.py", line 1011, in get_user
+2023-02-13 21:29:33.887889 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     ref = driver.get_user(entity_id)
+2023-02-13 21:29:33.887899 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/backends/sql.py", line 200, in get_user
+2023-02-13 21:29:33.887909 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     self._get_user(session, user_id).to_dict())
+2023-02-13 21:29:33.887920 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/identity/backends/sql.py", line 194, in _get_user
+2023-02-13 21:29:33.887930 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application     raise exception.UserNotFound(user_id=user_id)
+2023-02-13 21:29:33.887940 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application keystone.exception.UserNotFound: Could not find user: neutron.
+2023-02-13 21:29:33.887950 2023-02-13 21:29:33.882 28 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:29:34.146691 2023-02-13 21:29:34.145 27 WARNING py.warnings [None req-c42baab0-4043-4c47-8732-959b8f46c548 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:list_users": "(role:reader and system_scope:all) or (role:reader and domain_id:%(target.domain_id)s)" failed scope check. The token used to make the request was project scoped but the policy requires ['system', 'domain'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:34.146765   warnings.warn(msg)
+2023-02-13 21:29:34.146778 \x1b[00m
+2023-02-13 21:29:34.459848 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application [None req-873857e6-1858-4613-bd9a-db69277c45e4 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] Could not find project: service.: keystone.exception.ProjectNotFound: Could not find project: service.
+2023-02-13 21:29:34.459892 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:29:34.459927 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:29:34.459938 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:29:34.459948 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:29:34.459959 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:29:34.459969 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:29:34.459979 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:29:34.459996 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:29:34.460006 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:29:34.460017 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:29:34.460027 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:29:34.460037 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/projects.py", line 151, in get
+2023-02-13 21:29:34.460048 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     return self._get_project(project_id)
+2023-02-13 21:29:34.460058 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/projects.py", line 107, in _get_project
+2023-02-13 21:29:34.460069 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     project = PROVIDERS.resource_api.get_project(project_id)
+2023-02-13 21:29:34.460079 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:29:34.460090 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:29:34.460100 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:29:34.460110 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:29:34.460121 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:29:34.460157 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:29:34.460170 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:29:34.460181 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:29:34.460191 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:29:34.460201 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:29:34.460212 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:29:34.460222 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:29:34.460232 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:29:34.460242 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:29:34.460252 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:29:34.460263 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:29:34.460273 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/core.py", line 903, in get_project
+2023-02-13 21:29:34.460283 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     return self.driver.get_project(project_id)
+2023-02-13 21:29:34.460293 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/backends/sql.py", line 49, in get_project
+2023-02-13 21:29:34.460304 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     return self._get_project(session, project_id).to_dict()
+2023-02-13 21:29:34.460314 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/resource/backends/sql.py", line 44, in _get_project
+2023-02-13 21:29:34.460325 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application     raise exception.ProjectNotFound(project_id=project_id)
+2023-02-13 21:29:34.460342 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application keystone.exception.ProjectNotFound: Could not find project: service.
+2023-02-13 21:29:34.460351 2023-02-13 21:29:34.456 28 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:29:34.683778 2023-02-13 21:29:34.682 27 WARNING py.warnings [None req-1d0f263c-db10-424b-b326-baf73844a0d2 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:list_projects": "(role:reader and system_scope:all) or (role:reader and domain_id:%(target.domain_id)s)" failed scope check. The token used to make the request was project scoped but the policy requires ['system', 'domain'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:34.683818   warnings.warn(msg)
+2023-02-13 21:29:34.683828 \x1b[00m
+2023-02-13 21:29:34.943151 2023-02-13 21:29:34.942 28 WARNING py.warnings [None req-069fac63-676c-4012-b21d-de1f32827f1b 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:create_grant": "(role:admin and system_scope:all) or ((role:admin and domain_id:%(target.user.domain_id)s and domain_id:%(target.project.domain_id)s) or (role:admin and domain_id:%(target.user.domain_id)s and domain_id:%(target.domain.id)s) or (role:admin and domain_id:%(target.group.domain_id)s and domain_id:%(target.project.domain_id)s) or (role:admin and domain_id:%(target.group.domain_id)s and domain_id:%(target.domain.id)s)) and (domain_id:%(target.role.domain_id)s or None:%(target.role.domain_id)s)" failed scope check. The token used to make the request was project scoped but the policy requires ['system', 'domain'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:34.943206   warnings.warn(msg)
+2023-02-13 21:29:34.943217 \x1b[00m
+2023-02-13 21:29:39.015473 2023-02-13 21:29:39.014 27 WARNING py.warnings [None req-0982af54-ed69-43ef-ad9f-f13252454d59 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:create_service": "role:admin and system_scope:all" failed scope check. The token used to make the request was project scoped but the policy requires ['system'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:39.015524   warnings.warn(msg)
+2023-02-13 21:29:39.015536 \x1b[00m
+2023-02-13 21:29:43.157656 2023-02-13 21:29:43.156 28 WARNING py.warnings [None req-2cd34c66-495b-4bcf-919e-978c5a68ffda 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:get_service": "role:reader and system_scope:all" failed scope check. The token used to make the request was project scoped but the policy requires ['system'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:43.157703   warnings.warn(msg)
+2023-02-13 21:29:43.157713 \x1b[00m
+2023-02-13 21:29:43.176214 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application [None req-2cd34c66-495b-4bcf-919e-978c5a68ffda 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] Could not find service: network.: keystone.exception.ServiceNotFound: Could not find service: network.
+2023-02-13 21:29:43.176253 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:29:43.176264 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/core.py", line 152, in get_service
+2023-02-13 21:29:43.176274 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     return self.driver.get_service(service_id)
+2023-02-13 21:29:43.176283 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/backends/sql.py", line 196, in get_service
+2023-02-13 21:29:43.176318 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     return self._get_service(session, service_id).to_dict()
+2023-02-13 21:29:43.176327 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/backends/sql.py", line 191, in _get_service
+2023-02-13 21:29:43.176337 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     raise exception.ServiceNotFound(service_id=service_id)
+2023-02-13 21:29:43.176346 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application keystone.exception.ServiceNotFound: Could not find service: network.
+2023-02-13 21:29:43.176355 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application 
+2023-02-13 21:29:43.176365 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application During handling of the above exception, another exception occurred:
+2023-02-13 21:29:43.176425 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application 
+2023-02-13 21:29:43.176440 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:29:43.176450 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:29:43.176459 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:29:43.176469 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:29:43.176478 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:29:43.176488 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:29:43.176497 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:29:43.176507 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:29:43.176516 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:29:43.176579 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:29:43.176591 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:29:43.176600 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/services.py", line 45, in get
+2023-02-13 21:29:43.176625 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     return self._get_service(service_id)
+2023-02-13 21:29:43.176637 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/services.py", line 34, in _get_service
+2023-02-13 21:29:43.176647 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     return self.wrap_member(PROVIDERS.catalog_api.get_service(service_id))
+2023-02-13 21:29:43.176656 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:29:43.176665 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:29:43.176674 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:29:43.176683 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:29:43.176693 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:29:43.176702 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:29:43.176711 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:29:43.176720 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:29:43.176729 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:29:43.176751 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:29:43.176763 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:29:43.176772 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:29:43.176781 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:29:43.176791 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:29:43.176800 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:29:43.176809 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:29:43.176819 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/core.py", line 154, in get_service
+2023-02-13 21:29:43.176829 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application     raise exception.ServiceNotFound(service_id=service_id)
+2023-02-13 21:29:43.176839 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application keystone.exception.ServiceNotFound: Could not find service: network.
+2023-02-13 21:29:43.176848 2023-02-13 21:29:43.171 28 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:29:43.365879 2023-02-13 21:29:43.364 27 WARNING py.warnings [None req-3da6c415-ebac-4af9-a1e5-468557512a73 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:list_services": "role:reader and system_scope:all" failed scope check. The token used to make the request was project scoped but the policy requires ['system'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:43.365923   warnings.warn(msg)
+2023-02-13 21:29:43.365934 \x1b[00m
+2023-02-13 21:29:43.626006 2023-02-13 21:29:43.624 28 WARNING py.warnings [None req-5a4fc7f7-100b-47df-a730-e299ab710b93 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:list_services": "role:reader and system_scope:all" failed scope check. The token used to make the request was project scoped but the policy requires ['system'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:43.626056   warnings.warn(msg)
+2023-02-13 21:29:43.626066 \x1b[00m
+2023-02-13 21:29:43.838155 2023-02-13 21:29:43.837 27 WARNING py.warnings [None req-7a267a00-45cf-46c7-b815-ae3140d5708c 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:create_endpoint": "role:admin and system_scope:all" failed scope check. The token used to make the request was project scoped but the policy requires ['system'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:43.838214   warnings.warn(msg)
+2023-02-13 21:29:43.838225 \x1b[00m
+2023-02-13 21:29:47.886511 2023-02-13 21:29:47.885 27 WARNING py.warnings [None req-cd26d824-e250-4300-8dad-b77ffc7d518f 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:get_service": "role:reader and system_scope:all" failed scope check. The token used to make the request was project scoped but the policy requires ['system'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:47.886577   warnings.warn(msg)
+2023-02-13 21:29:47.886588 \x1b[00m
+2023-02-13 21:29:47.903717 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application [None req-cd26d824-e250-4300-8dad-b77ffc7d518f 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] Could not find service: network.: keystone.exception.ServiceNotFound: Could not find service: network.
+2023-02-13 21:29:47.903757 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:29:47.903767 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/core.py", line 152, in get_service
+2023-02-13 21:29:47.903777 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     return self.driver.get_service(service_id)
+2023-02-13 21:29:47.903786 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/backends/sql.py", line 196, in get_service
+2023-02-13 21:29:47.903796 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     return self._get_service(session, service_id).to_dict()
+2023-02-13 21:29:47.903805 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/backends/sql.py", line 191, in _get_service
+2023-02-13 21:29:47.903815 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     raise exception.ServiceNotFound(service_id=service_id)
+2023-02-13 21:29:47.903824 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application keystone.exception.ServiceNotFound: Could not find service: network.
+2023-02-13 21:29:47.903833 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application 
+2023-02-13 21:29:47.903842 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application During handling of the above exception, another exception occurred:
+2023-02-13 21:29:47.903851 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application 
+2023-02-13 21:29:47.903874 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:29:47.903888 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:29:47.903897 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:29:47.903906 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:29:47.903916 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:29:47.903925 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:29:47.903934 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:29:47.903944 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:29:47.903953 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:29:47.903962 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:29:47.903971 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:29:47.903996 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/services.py", line 45, in get
+2023-02-13 21:29:47.904008 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     return self._get_service(service_id)
+2023-02-13 21:29:47.904017 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/services.py", line 34, in _get_service
+2023-02-13 21:29:47.904027 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     return self.wrap_member(PROVIDERS.catalog_api.get_service(service_id))
+2023-02-13 21:29:47.904036 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:29:47.904045 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:29:47.904055 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:29:47.904064 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:29:47.904073 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:29:47.904083 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:29:47.904092 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:29:47.904102 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:29:47.904111 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:29:47.904121 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:29:47.904130 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:29:47.904139 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:29:47.904148 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:29:47.904158 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:29:47.904167 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:29:47.904176 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:29:47.904185 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/core.py", line 154, in get_service
+2023-02-13 21:29:47.904195 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application     raise exception.ServiceNotFound(service_id=service_id)
+2023-02-13 21:29:47.904204 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application keystone.exception.ServiceNotFound: Could not find service: network.
+2023-02-13 21:29:47.904213 2023-02-13 21:29:47.899 27 ERROR keystone.server.flask.application \x1b[00m
+2023-02-13 21:29:48.408632 2023-02-13 21:29:48.407 28 WARNING py.warnings [None req-7dbee78f-e58b-4268-8be7-e43423a32cf7 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] /var/lib/kolla/venv/lib/python3.9/site-packages/oslo_policy/policy.py:1129: UserWarning: Policy "identity:create_endpoint": "role:admin and system_scope:all" failed scope check. The token used to make the request was project scoped but the policy requires ['system'] scope. This behavior may change in the future where using the intended scope is required
+2023-02-13 21:29:48.408696   warnings.warn(msg)
+2023-02-13 21:29:48.408708 \x1b[00m
+2023-02-13 21:29:52.733778 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application [None req-7a0f9f54-be9b-43d4-9e4b-3a247ebfd81b 0f95cfd7c8bc4da28cfc28a2b7a247da 86865fb4c9b049c4849b4f968a442d6e - - default default] Could not find service: network.: keystone.exception.ServiceNotFound: Could not find service: network.
+2023-02-13 21:29:52.733831 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:29:52.733866 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/core.py", line 152, in get_service
+2023-02-13 21:29:52.733880 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     return self.driver.get_service(service_id)
+2023-02-13 21:29:52.733889 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/backends/sql.py", line 196, in get_service
+2023-02-13 21:29:52.733899 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     return self._get_service(session, service_id).to_dict()
+2023-02-13 21:29:52.733909 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/backends/sql.py", line 191, in _get_service
+2023-02-13 21:29:52.733918 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     raise exception.ServiceNotFound(service_id=service_id)
+2023-02-13 21:29:52.733927 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application keystone.exception.ServiceNotFound: Could not find service: network.
+2023-02-13 21:29:52.733936 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application 
+2023-02-13 21:29:52.733945 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application During handling of the above exception, another exception occurred:
+2023-02-13 21:29:52.733955 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application 
+2023-02-13 21:29:52.733964 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application Traceback (most recent call last):
+2023-02-13 21:29:52.733973 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1820, in full_dispatch_request
+2023-02-13 21:29:52.733982 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     rv = self.dispatch_request()
+2023-02-13 21:29:52.733991 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/app.py", line 1796, in dispatch_request
+2023-02-13 21:29:52.734001 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+2023-02-13 21:29:52.734010 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 467, in wrapper
+2023-02-13 21:29:52.734020 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     resp = resource(*args, **kwargs)
+2023-02-13 21:29:52.734491 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask/views.py", line 107, in view
+2023-02-13 21:29:52.734504 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     return current_app.ensure_sync(self.dispatch_request)(**kwargs)
+2023-02-13 21:29:52.734690 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/flask_restful/__init__.py", line 582, in dispatch_request
+2023-02-13 21:29:52.734708 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     resp = meth(*args, **kwargs)
+2023-02-13 21:29:52.734717 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/services.py", line 45, in get
+2023-02-13 21:29:52.734727 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     return self._get_service(service_id)
+2023-02-13 21:29:52.734736 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/api/services.py", line 34, in _get_service
+2023-02-13 21:29:52.734745 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     return self.wrap_member(PROVIDERS.catalog_api.get_service(service_id))
+2023-02-13 21:29:52.734755 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/common/manager.py", line 115, in wrapped
+2023-02-13 21:29:52.734764 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     __ret_val = __f(*args, **kwargs)
+2023-02-13 21:29:52.734773 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/decorator.py", line 232, in fun
+2023-02-13 21:29:52.734783 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     return caller(func, *(extras + args), **kw)
+2023-02-13 21:29:52.734793 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1577, in get_or_create_for_user_func
+2023-02-13 21:29:52.734802 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     return self.get_or_create(
+2023-02-13 21:29:52.734811 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 1042, in get_or_create
+2023-02-13 21:29:52.734821 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     with Lock(
+2023-02-13 21:29:52.734830 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 185, in __enter__
+2023-02-13 21:29:52.734840 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     return self._enter()
+2023-02-13 21:29:52.734849 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 94, in _enter
+2023-02-13 21:29:52.734858 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     generated = self._enter_create(value, createdtime)
+2023-02-13 21:29:52.734868 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/lock.py", line 178, in _enter_create
+2023-02-13 21:29:52.734898 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     return self.creator()
+2023-02-13 21:29:52.734907 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/dogpile/cache/region.py", line 995, in gen_value
+2023-02-13 21:29:52.734917 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     created_value = creator(
+2023-02-13 21:29:52.734926 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application   File "/var/lib/kolla/venv/lib/python3.9/site-packages/keystone/catalog/core.py", line 154, in get_service
+2023-02-13 21:29:52.734936 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application     raise exception.ServiceNotFound(service_id=service_id)
+2023-02-13 21:29:52.734945 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application keystone.exception.ServiceNotFound: Could not find service: network.
+2023-02-13 21:29:52.734968 2023-02-13 21:29:52.728 28 ERROR keystone.server.flask.application \x1b[00m
