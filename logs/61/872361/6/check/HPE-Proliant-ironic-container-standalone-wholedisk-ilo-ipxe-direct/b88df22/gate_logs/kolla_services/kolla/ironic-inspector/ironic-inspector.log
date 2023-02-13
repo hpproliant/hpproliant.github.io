@@ -1,0 +1,95 @@
+2023-02-13 21:43:00.818 7 WARNING keystonemiddleware.auth_token [-] AuthToken middleware is set with keystone_authtoken.service_token_roles_required set to False. This is backwards compatible but deprecated behaviour. Please set this to True.
+2023-02-13 21:43:00.841 7 INFO oslo.service.wsgi [-] ironic_inspector listening on 169.16.1.186:5050
+2023-02-13 21:43:00.905 7 INFO eventlet.wsgi.server [-] (7) wsgi starting up on http://169.16.1.186:5050
+2023-02-13 21:43:00.968 7 WARNING ironic_inspector.conductor.manager [-] Introspection data will not be stored. Change "[processing] store_data" option if this is not the desired behavior
+2023-02-13 21:43:01.080 7 INFO ironic_inspector.conductor.manager [-] Coordination backend cannot be started, assuming no other instances are running. Error: [Errno 111] ECONNREFUSED (with errno ECONNREFUSED [111])
+2023-02-13 21:43:01.087 7 INFO ironic_inspector.conductor.manager [-] Enabled processing hooks: ['ramdisk_error', 'root_disk_selection', 'scheduler', 'validate_interfaces', 'capabilities', 'pci_devices']
+2023-02-13 21:43:01.092 7 INFO ironic_inspector.common.rpc_service [-] Created RPC server for service ironic_inspector.conductor on host host-169-16-1-186.
+2023-02-13 21:44:06.714 7 WARNING keystoneauth.discover [-] Failed to contact the endpoint at http://169.16.1.186:6385 for discovery. Fallback to using that endpoint as the base url.
+2023-02-13 21:44:11.055 7 WARNING keystoneauth.discover [-] Failed to contact the endpoint at http://169.16.1.186:6385 for discovery. Fallback to using that endpoint as the base url.
+2023-02-13 21:44:11.057 7 ERROR ironic_inspector.common.ironic [-] Failed to establish a connection with ironic, reason: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.: openstack.exceptions.NotSupported: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.
+2023-02-13 21:44:11.065 7 ERROR ironic_inspector.conductor.manager [-] The periodic ironic_inspector.conductor.manager.sync_with_ironic failed with: Traceback (most recent call last):
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 290, in run
+    work()
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 64, in __call__
+    return self.callback(*self.args, **self.kwargs)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 178, in decorator
+    return f(*args, **kwargs)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/conductor/manager.py", line 226, in sync_with_ironic
+    ironic = ir_utils.get_client()
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/common/ironic.py", line 61, in get_client
+    return openstack.connection.Connection(
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 87, in __get__
+    proxy = self._make_proxy(instance)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 266, in _make_proxy
+    raise exceptions.NotSupported(
+openstack.exceptions.NotSupported: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.
+: None: None
+2023-02-13 21:44:11.065 7 ERROR ironic_inspector.conductor.manager NoneType: None
+2023-02-13 21:44:11.065 7 ERROR ironic_inspector.conductor.manager 
+2023-02-13 21:45:01.153 7 WARNING keystoneauth.discover [-] Failed to contact the endpoint at http://169.16.1.186:6385 for discovery. Fallback to using that endpoint as the base url.
+2023-02-13 21:45:01.172 7 WARNING keystoneauth.discover [-] Failed to contact the endpoint at http://169.16.1.186:6385 for discovery. Fallback to using that endpoint as the base url.
+2023-02-13 21:45:01.173 7 ERROR ironic_inspector.common.ironic [-] Failed to establish a connection with ironic, reason: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.: openstack.exceptions.NotSupported: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.
+2023-02-13 21:45:01.174 7 ERROR ironic_inspector.conductor.manager [-] The periodic ironic_inspector.conductor.manager.sync_with_ironic failed with: Traceback (most recent call last):
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 290, in run
+    work()
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 64, in __call__
+    return self.callback(*self.args, **self.kwargs)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 178, in decorator
+    return f(*args, **kwargs)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/conductor/manager.py", line 226, in sync_with_ironic
+    ironic = ir_utils.get_client()
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/common/ironic.py", line 61, in get_client
+    return openstack.connection.Connection(
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 87, in __get__
+    proxy = self._make_proxy(instance)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 266, in _make_proxy
+    raise exceptions.NotSupported(
+openstack.exceptions.NotSupported: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.
+: None: None
+2023-02-13 21:45:01.174 7 ERROR ironic_inspector.conductor.manager NoneType: None
+2023-02-13 21:45:01.174 7 ERROR ironic_inspector.conductor.manager 
+2023-02-13 21:46:01.141 7 WARNING keystoneauth.discover [-] Failed to contact the endpoint at http://169.16.1.186:6385 for discovery. Fallback to using that endpoint as the base url.
+2023-02-13 21:46:01.155 7 WARNING keystoneauth.discover [-] Failed to contact the endpoint at http://169.16.1.186:6385 for discovery. Fallback to using that endpoint as the base url.
+2023-02-13 21:46:01.156 7 ERROR ironic_inspector.common.ironic [-] Failed to establish a connection with ironic, reason: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.: openstack.exceptions.NotSupported: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.
+2023-02-13 21:46:01.157 7 ERROR ironic_inspector.conductor.manager [-] The periodic ironic_inspector.conductor.manager.sync_with_ironic failed with: Traceback (most recent call last):
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 290, in run
+    work()
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 64, in __call__
+    return self.callback(*self.args, **self.kwargs)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 178, in decorator
+    return f(*args, **kwargs)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/conductor/manager.py", line 226, in sync_with_ironic
+    ironic = ir_utils.get_client()
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/common/ironic.py", line 61, in get_client
+    return openstack.connection.Connection(
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 87, in __get__
+    proxy = self._make_proxy(instance)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 266, in _make_proxy
+    raise exceptions.NotSupported(
+openstack.exceptions.NotSupported: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.
+: None: None
+2023-02-13 21:46:01.157 7 ERROR ironic_inspector.conductor.manager NoneType: None
+2023-02-13 21:46:01.157 7 ERROR ironic_inspector.conductor.manager 
+2023-02-13 21:47:01.161 7 WARNING keystoneauth.discover [-] Failed to contact the endpoint at http://169.16.1.186:6385 for discovery. Fallback to using that endpoint as the base url.
+2023-02-13 21:47:01.182 7 WARNING keystoneauth.discover [-] Failed to contact the endpoint at http://169.16.1.186:6385 for discovery. Fallback to using that endpoint as the base url.
+2023-02-13 21:47:01.183 7 ERROR ironic_inspector.common.ironic [-] Failed to establish a connection with ironic, reason: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.: openstack.exceptions.NotSupported: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.
+2023-02-13 21:47:01.184 7 ERROR ironic_inspector.conductor.manager [-] The periodic ironic_inspector.conductor.manager.sync_with_ironic failed with: Traceback (most recent call last):
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 290, in run
+    work()
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 64, in __call__
+    return self.callback(*self.args, **self.kwargs)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/futurist/periodics.py", line 178, in decorator
+    return f(*args, **kwargs)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/conductor/manager.py", line 226, in sync_with_ironic
+    ironic = ir_utils.get_client()
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/common/ironic.py", line 61, in get_client
+    return openstack.connection.Connection(
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 87, in __get__
+    proxy = self._make_proxy(instance)
+  File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 266, in _make_proxy
+    raise exceptions.NotSupported(
+openstack.exceptions.NotSupported: The baremetal service for 169.16.1.186:RegionOne exists but does not have any supported versions.
+: None: None
+2023-02-13 21:47:01.184 7 ERROR ironic_inspector.conductor.manager NoneType: None
+2023-02-13 21:47:01.184 7 ERROR ironic_inspector.conductor.manager 
