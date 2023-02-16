@@ -1,0 +1,58 @@
+2023-02-16 14:00:55.836 7 WARNING keystonemiddleware.auth_token [-] AuthToken middleware is set with keystone_authtoken.service_token_roles_required set to False. This is backwards compatible but deprecated behaviour. Please set this to True.
+2023-02-16 14:00:55.862 7 INFO oslo.service.wsgi [-] ironic_inspector listening on 169.16.1.159:5050
+2023-02-16 14:00:55.921 7 INFO eventlet.wsgi.server [-] (7) wsgi starting up on http://169.16.1.159:5050
+2023-02-16 14:00:55.989 7 WARNING ironic_inspector.conductor.manager [-] Introspection data will not be stored. Change "[processing] store_data" option if this is not the desired behavior
+2023-02-16 14:00:56.095 7 INFO ironic_inspector.conductor.manager [-] Coordination backend cannot be started, assuming no other instances are running. Error: [Errno 111] ECONNREFUSED (with errno ECONNREFUSED [111])
+2023-02-16 14:00:56.099 7 INFO ironic_inspector.conductor.manager [-] Enabled processing hooks: ['ramdisk_error', 'root_disk_selection', 'scheduler', 'validate_interfaces', 'capabilities', 'pci_devices']
+2023-02-16 14:00:57.978 7 WARNING keystoneauth.discover [-] Failed to contact the endpoint at http://169.16.1.159:6385 for discovery. Fallback to using that endpoint as the base url.
+2023-02-16 14:00:57.987 7 WARNING keystoneauth.discover [-] Failed to contact the endpoint at http://169.16.1.159:6385 for discovery. Fallback to using that endpoint as the base url.
+2023-02-16 14:00:57.991 7 ERROR ironic_inspector.common.ironic [-] Failed to establish a connection with ironic, reason: The baremetal service for 169.16.1.159:RegionOne exists but does not have any supported versions.: openstack.exceptions.NotSupported: The baremetal service for 169.16.1.159:RegionOne exists but does not have any supported versions.
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base [-] The PXE filter DnsmasqFilter, state=initialized encountered an exception: The baremetal service for 169.16.1.159:RegionOne exists but does not have any supported versions.; resetting the filter: openstack.exceptions.NotSupported: The baremetal service for 169.16.1.159:RegionOne exists but does not have any supported versions.
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base Traceback (most recent call last):
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/pxe_filter/base.py", line 151, in fsm_reset_on_error
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base     yield self.fsm
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/pxe_filter/base.py", line 87, in inner
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base     return method(self, *args, **kwargs)
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/pxe_filter/dnsmasq.py", line 150, in init_filter
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base     ironic = ir_utils.get_client()
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/common/ironic.py", line 61, in get_client
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base     return openstack.connection.Connection(
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base   File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 87, in __get__
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base     proxy = self._make_proxy(instance)
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base   File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 266, in _make_proxy
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base     raise exceptions.NotSupported(
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base openstack.exceptions.NotSupported: The baremetal service for 169.16.1.159:RegionOne exists but does not have any supported versions.
+2023-02-16 14:00:57.994 7 ERROR ironic_inspector.pxe_filter.base 
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service [-] Error starting thread.: openstack.exceptions.NotSupported: The baremetal service for 169.16.1.159:RegionOne exists but does not have any supported versions.
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service Traceback (most recent call last):
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_service/service.py", line 806, in run_service
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service     service.start()
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/common/rpc_service.py", line 40, in start
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service     self.manager.init_host()
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/conductor/manager.py", line 100, in init_host
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service     driver.init_filter()
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/pxe_filter/base.py", line 87, in inner
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service     return method(self, *args, **kwargs)
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/pxe_filter/dnsmasq.py", line 150, in init_filter
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service     ironic = ir_utils.get_client()
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service   File "/var/lib/kolla/venv/lib/python3.9/site-packages/ironic_inspector/common/ironic.py", line 61, in get_client
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service     return openstack.connection.Connection(
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service   File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 87, in __get__
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service     proxy = self._make_proxy(instance)
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service   File "/var/lib/kolla/venv/lib/python3.9/site-packages/openstack/service_description.py", line 266, in _make_proxy
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service     raise exceptions.NotSupported(
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service openstack.exceptions.NotSupported: The baremetal service for 169.16.1.159:RegionOne exists but does not have any supported versions.
+2023-02-16 14:00:58.000 7 ERROR oslo_service.service 
+2023-02-16 14:00:58.006 7 INFO oslo.service.wsgi [-] Stopping WSGI server.
+2023-02-16 14:00:58.008 7 INFO eventlet.wsgi.server [-] (7) wsgi exited, is_accepting=True
+2023-02-16 14:00:58.148 7 WARNING amqp [-] Received method (60, 30) during closing channel 1. This method will be ignored: SystemExit: 1
+2023-02-16 14:00:58.154 7 INFO ironic_inspector.conductor.manager [-] Shut down successfully
+2023-02-16 14:00:58.154 7 INFO ironic_inspector.common.rpc_service [-] Stopped RPC server for service ironic_inspector.conductor on host host-169-16-1-159.
+2023-02-16 14:01:09.468 7 WARNING keystonemiddleware.auth_token [-] AuthToken middleware is set with keystone_authtoken.service_token_roles_required set to False. This is backwards compatible but deprecated behaviour. Please set this to True.
+2023-02-16 14:01:09.535 7 INFO oslo.service.wsgi [-] ironic_inspector listening on 169.16.1.159:5050
+2023-02-16 14:01:09.571 7 INFO eventlet.wsgi.server [-] (7) wsgi starting up on http://169.16.1.159:5050
+2023-02-16 14:01:09.603 7 WARNING ironic_inspector.conductor.manager [-] Introspection data will not be stored. Change "[processing] store_data" option if this is not the desired behavior
+2023-02-16 14:01:09.772 7 INFO ironic_inspector.conductor.manager [-] Coordination backend cannot be started, assuming no other instances are running. Error: [Errno 111] ECONNREFUSED (with errno ECONNREFUSED [111])
+2023-02-16 14:01:09.779 7 INFO ironic_inspector.conductor.manager [-] Enabled processing hooks: ['ramdisk_error', 'root_disk_selection', 'scheduler', 'validate_interfaces', 'capabilities', 'pci_devices']
+2023-02-16 14:01:27.742 7 INFO ironic_inspector.pxe_filter.dnsmasq [-] The dnsmasq PXE filter was initialized
+2023-02-16 14:01:27.744 7 INFO ironic_inspector.common.rpc_service [-] Created RPC server for service ironic_inspector.conductor on host host-169-16-1-159.
