@@ -1,0 +1,85 @@
+2023-02-20 22:02:48,687 p=5730 u=root n=ansible | [WARNING]: Invalid characters were found in group names but not replaced, use
+-vvvv to see details
+
+2023-02-20 22:02:50,800 p=5730 u=root n=ansible | PLAY [Gather facts for all hosts] **********************************************
+2023-02-20 22:02:51,081 p=5730 u=root n=ansible | TASK [Gather facts] ************************************************************
+2023-02-20 22:02:54,567 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:02:54,658 p=5730 u=root n=ansible | TASK [Group hosts to determine when using --limit] *****************************
+2023-02-20 22:02:54,737 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:02:54,925 p=5730 u=root n=ansible | [WARNING]: Could not match supplied host pattern, ignoring:
+all_using_limit_True
+
+2023-02-20 22:02:54,934 p=5730 u=root n=ansible | PLAY [Gather facts for all hosts (if using --limit)] ***************************
+2023-02-20 22:02:54,934 p=5730 u=root n=ansible | skipping: no hosts matched
+2023-02-20 22:02:54,943 p=5730 u=root n=ansible | PLAY [Apply role baremetal] ****************************************************
+2023-02-20 22:02:55,167 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Ensure localhost in /etc/hosts] **************
+2023-02-20 22:02:56,113 p=5730 u=root n=ansible | changed: [localhost]
+2023-02-20 22:02:56,221 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Ensure hostname does not point to 127.0.1.1 in /etc/hosts] ***
+2023-02-20 22:02:56,794 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:02:56,882 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Generate /etc/hosts for all of the nodes] ****
+2023-02-20 22:02:58,406 p=5730 u=root n=ansible | changed: [localhost]
+2023-02-20 22:02:58,496 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Ensure unprivileged users can use ping] ******
+2023-02-20 22:02:59,379 p=5730 u=root n=ansible | changed: [localhost]
+2023-02-20 22:02:59,475 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Ensure /etc/cloud/cloud.cfg exists] **********
+2023-02-20 22:03:00,435 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:03:00,527 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Disable cloud-init manage_etc_hosts] *********
+2023-02-20 22:03:01,917 p=5730 u=root n=ansible | changed: [localhost]
+2023-02-20 22:03:02,005 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Set firewall default policy] *****************
+2023-02-20 22:03:02,055 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:02,155 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Check if firewalld is installed] *************
+2023-02-20 22:03:03,133 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:03:03,227 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Disable firewalld] ***************************
+2023-02-20 22:03:03,295 p=5730 u=root n=ansible | skipping: [localhost] => (item=firewalld) 
+2023-02-20 22:03:03,388 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : Fail if docker_custom_option is defined] ********
+2023-02-20 22:03:03,455 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:03,539 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : include_tasks] **********************************
+2023-02-20 22:03:03,579 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:03,688 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : Ensure docker config directory exists] **********
+2023-02-20 22:03:04,662 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:03:04,748 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : Write docker config] ****************************
+2023-02-20 22:03:05,921 p=5730 u=root n=ansible | changed: [localhost]
+2023-02-20 22:03:06,034 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : Remove old docker options file] *****************
+2023-02-20 22:03:06,546 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:03:06,629 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : Ensure docker service directory exists] *********
+2023-02-20 22:03:06,677 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:06,763 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : Configure docker service] ***********************
+2023-02-20 22:03:06,810 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:06,895 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : Ensure the path for CA file for private registry exists] ***
+2023-02-20 22:03:06,946 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:07,031 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : Ensure the CA file for private registry exists] ***
+2023-02-20 22:03:07,079 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:07,163 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : Flush handlers] *********************************
+2023-02-20 22:03:07,164 p=5730 u=root n=ansible | RUNNING HANDLER [openstack.kolla.docker : Restart docker] **********************
+2023-02-20 22:03:10,902 p=5730 u=root n=ansible | changed: [localhost]
+2023-02-20 22:03:11,003 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : Start and enable docker] ************************
+2023-02-20 22:03:11,913 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:03:12,002 p=5730 u=root n=ansible | TASK [openstack.kolla.docker : include_tasks] **********************************
+2023-02-20 22:03:12,044 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:12,218 p=5730 u=root n=ansible | TASK [openstack.kolla.kolla_user : Ensure groups are present] ******************
+2023-02-20 22:03:12,273 p=5730 u=root n=ansible | skipping: [localhost] => (item=docker) 
+2023-02-20 22:03:12,284 p=5730 u=root n=ansible | skipping: [localhost] => (item=sudo) 
+2023-02-20 22:03:12,290 p=5730 u=root n=ansible | skipping: [localhost] => (item=kolla) 
+2023-02-20 22:03:12,409 p=5730 u=root n=ansible | TASK [openstack.kolla.kolla_user : Create kolla user] **************************
+2023-02-20 22:03:12,459 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:12,546 p=5730 u=root n=ansible | TASK [openstack.kolla.kolla_user : Add public key to kolla user authorized keys] ***
+2023-02-20 22:03:12,598 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:12,682 p=5730 u=root n=ansible | TASK [openstack.kolla.kolla_user : Grant kolla user passwordless sudo] *********
+2023-02-20 22:03:12,730 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:12,900 p=5730 u=root n=ansible | TASK [openstack.kolla.docker_sdk : Install latest pip in the virtualenv] *******
+2023-02-20 22:03:12,963 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:13,051 p=5730 u=root n=ansible | TASK [openstack.kolla.docker_sdk : Install docker SDK for python] **************
+2023-02-20 22:03:18,865 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:03:19,031 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Ensure node_config_directory directory exists] ***
+2023-02-20 22:03:19,735 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:03:19,841 p=5730 u=root n=ansible | TASK [openstack.kolla.apparmor_libvirt : include_tasks] ************************
+2023-02-20 22:03:19,883 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:20,051 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Change state of selinux] *********************
+2023-02-20 22:03:21,776 p=5730 u=root n=ansible | ok: [localhost]
+2023-02-20 22:03:21,863 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Set https proxy for git] *********************
+2023-02-20 22:03:21,914 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:22,005 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : Set http proxy for git] **********************
+2023-02-20 22:03:22,048 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:22,140 p=5730 u=root n=ansible | TASK [openstack.kolla.baremetal : include_tasks] *******************************
+2023-02-20 22:03:22,184 p=5730 u=root n=ansible | skipping: [localhost]
+2023-02-20 22:03:22,435 p=5730 u=root n=ansible | PLAY RECAP *********************************************************************
+2023-02-20 22:03:22,436 p=5730 u=root n=ansible | localhost                  : ok=17   changed=6    unreachable=0    failed=0    skipped=18   rescued=0    ignored=0   
