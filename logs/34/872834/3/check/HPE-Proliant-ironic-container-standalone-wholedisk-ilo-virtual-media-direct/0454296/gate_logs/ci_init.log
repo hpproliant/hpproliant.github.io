@@ -1,0 +1,1138 @@
+Host	User
+%	root
+localhost	mariadb.sys
+localhost	mysql
+Loaded image: kolla/neutron-dhcp-agent:14.6.0
+Loaded image: kolla/neutron-server:14.6.0
+Loaded image: kolla/ironic-pxe:14.6.0
+Loaded image: kolla/keystone-fernet:14.6.0
+Loaded image: kolla/cron:14.6.0
+Loaded image: kolla/neutron-metadata-agent:14.6.0
+Loaded image: kolla/ironic-inspector:14.6.0
+Loaded image: kolla/ironic-conductor:14.6.0
+Loaded image: kolla/keystone-ssh:14.6.0
+Loaded image: kolla/neutron-l3-agent:14.6.0
+Loaded image: kolla/ironic-api:14.6.0
+Loaded image: kolla/rabbitmq:14.6.0
+Loaded image: kolla/neutron-openvswitch-agent:14.6.0
+Loaded image: kolla/keystone:14.6.0
+Loaded image: kolla/kolla-toolbox:14.6.0
+Loaded image: kolla/dnsmasq:14.6.0
+Bootstrapping servers : ansible-playbook -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=bootstrap-servers /usr/local/share/kolla-ansible/ansible/kolla-host.yml  --inventory /home/citest/all-in-one
+
+PLAY [Gather facts for all hosts] **********************************************
+
+TASK [Gather facts] ************************************************************
+ok: [localhost]
+
+TASK [Group hosts to determine when using --limit] *****************************
+ok: [localhost]
+
+PLAY [Gather facts for all hosts (if using --limit)] ***************************
+skipping: no hosts matched
+
+PLAY [Apply role baremetal] ****************************************************
+
+TASK [openstack.kolla.baremetal : Ensure localhost in /etc/hosts] **************
+changed: [localhost]
+
+TASK [openstack.kolla.baremetal : Ensure hostname does not point to 127.0.1.1 in /etc/hosts] ***
+ok: [localhost]
+
+TASK [openstack.kolla.baremetal : Generate /etc/hosts for all of the nodes] ****
+changed: [localhost]
+
+TASK [openstack.kolla.baremetal : Ensure unprivileged users can use ping] ******
+changed: [localhost]
+
+TASK [openstack.kolla.baremetal : Ensure /etc/cloud/cloud.cfg exists] **********
+ok: [localhost]
+
+TASK [openstack.kolla.baremetal : Disable cloud-init manage_etc_hosts] *********
+changed: [localhost]
+
+TASK [openstack.kolla.baremetal : Set firewall default policy] *****************
+skipping: [localhost]
+
+TASK [openstack.kolla.baremetal : Check if firewalld is installed] *************
+ok: [localhost]
+
+TASK [openstack.kolla.baremetal : Disable firewalld] ***************************
+skipping: [localhost] => (item=firewalld) 
+
+TASK [openstack.kolla.docker : Fail if docker_custom_option is defined] ********
+skipping: [localhost]
+
+TASK [openstack.kolla.docker : include_tasks] **********************************
+skipping: [localhost]
+
+TASK [openstack.kolla.docker : Ensure docker config directory exists] **********
+ok: [localhost]
+
+TASK [openstack.kolla.docker : Write docker config] ****************************
+changed: [localhost]
+
+TASK [openstack.kolla.docker : Remove old docker options file] *****************
+ok: [localhost]
+
+TASK [openstack.kolla.docker : Ensure docker service directory exists] *********
+skipping: [localhost]
+
+TASK [openstack.kolla.docker : Configure docker service] ***********************
+skipping: [localhost]
+
+TASK [openstack.kolla.docker : Ensure the path for CA file for private registry exists] ***
+skipping: [localhost]
+
+TASK [openstack.kolla.docker : Ensure the CA file for private registry exists] ***
+skipping: [localhost]
+
+TASK [openstack.kolla.docker : Flush handlers] *********************************
+
+RUNNING HANDLER [openstack.kolla.docker : Restart docker] **********************
+changed: [localhost]
+
+TASK [openstack.kolla.docker : Start and enable docker] ************************
+ok: [localhost]
+
+TASK [openstack.kolla.docker : include_tasks] **********************************
+skipping: [localhost]
+
+TASK [openstack.kolla.kolla_user : Ensure groups are present] ******************
+skipping: [localhost] => (item=docker) 
+skipping: [localhost] => (item=sudo) 
+skipping: [localhost] => (item=kolla) 
+
+TASK [openstack.kolla.kolla_user : Create kolla user] **************************
+skipping: [localhost]
+
+TASK [openstack.kolla.kolla_user : Add public key to kolla user authorized keys] ***
+skipping: [localhost]
+
+TASK [openstack.kolla.kolla_user : Grant kolla user passwordless sudo] *********
+skipping: [localhost]
+
+TASK [openstack.kolla.docker_sdk : Install latest pip in the virtualenv] *******
+skipping: [localhost]
+
+TASK [openstack.kolla.docker_sdk : Install docker SDK for python] **************
+ok: [localhost]
+
+TASK [openstack.kolla.baremetal : Ensure node_config_directory directory exists] ***
+ok: [localhost]
+
+TASK [openstack.kolla.apparmor_libvirt : include_tasks] ************************
+skipping: [localhost]
+
+TASK [openstack.kolla.baremetal : Change state of selinux] *********************
+ok: [localhost]
+
+TASK [openstack.kolla.baremetal : Set https proxy for git] *********************
+skipping: [localhost]
+
+TASK [openstack.kolla.baremetal : Set http proxy for git] **********************
+skipping: [localhost]
+
+TASK [openstack.kolla.baremetal : include_tasks] *******************************
+skipping: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=17   changed=6    unreachable=0    failed=0    skipped=18   rescued=0    ignored=0   
+
+Deploying Playbooks : ansible-playbook -e @/etc/kolla/globals.yml  -e @/etc/kolla/passwords.yml -e CONFIG_DIR=/etc/kolla  -e kolla_action=deploy /usr/local/share/kolla-ansible/ansible/site.yml  --inventory /home/citest/all-in-one
+
+PLAY [Gather facts for all hosts] **********************************************
+
+TASK [Gather facts] ************************************************************
+ok: [localhost]
+
+TASK [Group hosts to determine when using --limit] *****************************
+ok: [localhost]
+
+PLAY [Gather facts for all hosts (if using --limit)] ***************************
+skipping: no hosts matched
+
+PLAY [Group hosts based on configuration] **************************************
+
+TASK [Group hosts based on Kolla action] ***************************************
+ok: [localhost]
+
+TASK [Group hosts based on enabled services] ***********************************
+ok: [localhost] => (item=enable_aodh_False)
+ok: [localhost] => (item=enable_barbican_False)
+ok: [localhost] => (item=enable_blazar_False)
+ok: [localhost] => (item=enable_ceilometer_False)
+ok: [localhost] => (item=enable_ceph_rgw_False)
+ok: [localhost] => (item=enable_cinder_False)
+ok: [localhost] => (item=enable_cloudkitty_False)
+ok: [localhost] => (item=enable_collectd_False)
+ok: [localhost] => (item=enable_cyborg_False)
+ok: [localhost] => (item=enable_designate_False)
+ok: [localhost] => (item=enable_etcd_False)
+ok: [localhost] => (item=enable_freezer_False)
+ok: [localhost] => (item=enable_glance_False)
+ok: [localhost] => (item=enable_gnocchi_False)
+ok: [localhost] => (item=enable_grafana_False)
+ok: [localhost] => (item=enable_hacluster_False)
+ok: [localhost] => (item=enable_heat_False)
+ok: [localhost] => (item=enable_horizon_False)
+ok: [localhost] => (item=enable_influxdb_False)
+ok: [localhost] => (item=enable_ironic_True)
+ok: [localhost] => (item=enable_iscsid_False)
+ok: [localhost] => (item=enable_keystone_True)
+ok: [localhost] => (item=enable_kuryr_False)
+ok: [localhost] => (item=enable_loadbalancer_False)
+ok: [localhost] => (item=enable_magnum_False)
+ok: [localhost] => (item=enable_manila_False)
+ok: [localhost] => (item=enable_mariadb_False)
+ok: [localhost] => (item=enable_masakari_False)
+ok: [localhost] => (item=enable_memcached_False)
+ok: [localhost] => (item=enable_mistral_False)
+ok: [localhost] => (item=enable_multipathd_False)
+ok: [localhost] => (item=enable_murano_False)
+ok: [localhost] => (item=enable_neutron_True)
+ok: [localhost] => (item=enable_nova_False)
+ok: [localhost] => (item=enable_octavia_False)
+ok: [localhost] => (item=enable_opensearch_False)
+ok: [localhost] => (item=enable_opensearch_dashboards_False)
+ok: [localhost] => (item=enable_openvswitch_False_enable_ovs_dpdk_False)
+ok: [localhost] => (item=enable_outward_rabbitmq_False)
+ok: [localhost] => (item=enable_ovn_False)
+ok: [localhost] => (item=enable_placement_False)
+ok: [localhost] => (item=enable_prometheus_False)
+ok: [localhost] => (item=enable_rabbitmq_True)
+ok: [localhost] => (item=enable_redis_False)
+ok: [localhost] => (item=enable_sahara_False)
+ok: [localhost] => (item=enable_senlin_False)
+ok: [localhost] => (item=enable_skydive_False)
+ok: [localhost] => (item=enable_solum_False)
+ok: [localhost] => (item=enable_swift_False)
+ok: [localhost] => (item=enable_tacker_False)
+ok: [localhost] => (item=enable_telegraf_False)
+ok: [localhost] => (item=enable_trove_False)
+ok: [localhost] => (item=enable_venus_False)
+ok: [localhost] => (item=enable_vitrage_False)
+ok: [localhost] => (item=enable_watcher_False)
+ok: [localhost] => (item=enable_zun_False)
+
+PLAY [Apply role prechecks] ****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role common] *******************************************************
+
+TASK [common : include_tasks] **************************************************
+included: /usr/local/share/kolla-ansible/ansible/roles/common/tasks/deploy.yml for localhost
+
+TASK [common : Ensuring config directories exist] ******************************
+changed: [localhost] => (item=[{'service_name': 'cron'}, 'cron'])
+skipping: [localhost] => (item=[{'service_name': 'fluentd'}, 'fluentd']) 
+changed: [localhost] => (item=[{'service_name': 'kolla-toolbox'}, 'kolla-toolbox'])
+
+TASK [common : include_tasks] **************************************************
+skipping: [localhost]
+
+TASK [common : Copying over config.json files for services] ********************
+skipping: [localhost] => (item={'key': 'fluentd', 'value': {'container_name': 'fluentd', 'group': 'fluentd', 'enabled': False, 'image': 'kolla/fluentd:14.6.0', 'environment': {'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS'}, 'volumes': ['/etc/kolla/fluentd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'fluentd_data:/var/lib/fluentd/data/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+changed: [localhost] => (item={'key': 'kolla-toolbox', 'value': {'container_name': 'kolla_toolbox', 'group': 'kolla-toolbox', 'enabled': True, 'image': 'kolla/kolla-toolbox:14.6.0', 'environment': {'ANSIBLE_NOCOLOR': '1', 'ANSIBLE_LIBRARY': '/usr/share/ansible'}, 'privileged': True, 'volumes': ['/etc/kolla/kolla-toolbox/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/dev/:/dev/', '/run/:/run/:shared', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+changed: [localhost] => (item={'key': 'cron', 'value': {'container_name': 'cron', 'group': 'cron', 'enabled': True, 'image': 'kolla/cron:14.6.0', 'environment': {'DUMMY_ENVIRONMENT': 'kolla_useless_env', 'KOLLA_LOGROTATE_SCHEDULE': 'daily'}, 'volumes': ['/etc/kolla/cron/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [common : Find custom fluentd input config files] *************************
+skipping: [localhost]
+
+TASK [common : Find custom fluentd filter config files] ************************
+skipping: [localhost]
+
+TASK [common : Find custom fluentd format config files] ************************
+skipping: [localhost]
+
+TASK [common : Find custom fluentd output config files] ************************
+skipping: [localhost]
+
+TASK [common : Copying over td-agent.conf] *************************************
+skipping: [localhost]
+
+TASK [common : Copying over cron logrotate config file] ************************
+changed: [localhost]
+
+TASK [common : Ensure RabbitMQ Erlang cookie exists] ***************************
+changed: [localhost]
+
+TASK [common : Ensuring config directories have correct owner and permission] ***
+skipping: [localhost] => (item={'key': 'fluentd', 'value': {'container_name': 'fluentd', 'group': 'fluentd', 'enabled': False, 'image': 'kolla/fluentd:14.6.0', 'environment': {'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS'}, 'volumes': ['/etc/kolla/fluentd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'fluentd_data:/var/lib/fluentd/data/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'kolla-toolbox', 'value': {'container_name': 'kolla_toolbox', 'group': 'kolla-toolbox', 'enabled': True, 'image': 'kolla/kolla-toolbox:14.6.0', 'environment': {'ANSIBLE_NOCOLOR': '1', 'ANSIBLE_LIBRARY': '/usr/share/ansible'}, 'privileged': True, 'volumes': ['/etc/kolla/kolla-toolbox/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/dev/:/dev/', '/run/:/run/:shared', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+ok: [localhost] => (item={'key': 'cron', 'value': {'container_name': 'cron', 'group': 'cron', 'enabled': True, 'image': 'kolla/cron:14.6.0', 'environment': {'DUMMY_ENVIRONMENT': 'kolla_useless_env', 'KOLLA_LOGROTATE_SCHEDULE': 'daily'}, 'volumes': ['/etc/kolla/cron/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [common : Copy rabbitmq-env.conf to kolla toolbox] ************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/common/templates/rabbitmq-env.conf.j2)
+
+TASK [common : Copy rabbitmq erl_inetrc to kolla toolbox] **********************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/common/templates/erl_inetrc.j2)
+
+TASK [common : Check common containers] ****************************************
+skipping: [localhost] => (item={'key': 'fluentd', 'value': {'container_name': 'fluentd', 'group': 'fluentd', 'enabled': False, 'image': 'kolla/fluentd:14.6.0', 'environment': {'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS'}, 'volumes': ['/etc/kolla/fluentd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'fluentd_data:/var/lib/fluentd/data/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+changed: [localhost] => (item={'key': 'kolla-toolbox', 'value': {'container_name': 'kolla_toolbox', 'group': 'kolla-toolbox', 'enabled': True, 'image': 'kolla/kolla-toolbox:14.6.0', 'environment': {'ANSIBLE_NOCOLOR': '1', 'ANSIBLE_LIBRARY': '/usr/share/ansible'}, 'privileged': True, 'volumes': ['/etc/kolla/kolla-toolbox/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/dev/:/dev/', '/run/:/run/:shared', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+changed: [localhost] => (item={'key': 'cron', 'value': {'container_name': 'cron', 'group': 'cron', 'enabled': True, 'image': 'kolla/cron:14.6.0', 'environment': {'DUMMY_ENVIRONMENT': 'kolla_useless_env', 'KOLLA_LOGROTATE_SCHEDULE': 'daily'}, 'volumes': ['/etc/kolla/cron/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [common : Creating log volume] ********************************************
+changed: [localhost]
+
+TASK [common : Link kolla_logs volume to /var/log/kolla] ***********************
+changed: [localhost]
+
+TASK [common : Flush handlers] *************************************************
+
+RUNNING HANDLER [common : Restart kolla-toolbox container] *********************
+changed: [localhost]
+
+RUNNING HANDLER [common : Initializing toolbox container using normal user] ****
+ok: [localhost]
+
+RUNNING HANDLER [common : Restart cron container] ******************************
+changed: [localhost]
+
+PLAY [Apply role loadbalancer] *************************************************
+skipping: no hosts matched
+
+PLAY [Apply role collectd] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role influxdb] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role telegraf] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role redis] ********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role mariadb] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role memcached] ****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role prometheus] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role iscsi] ********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role multipathd] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role rabbitmq] *****************************************************
+
+TASK [rabbitmq : include_tasks] ************************************************
+included: /usr/local/share/kolla-ansible/ansible/roles/rabbitmq/tasks/deploy.yml for localhost
+
+TASK [rabbitmq : Ensuring config directories exist] ****************************
+changed: [localhost] => (item={'key': 'rabbitmq', 'value': {'container_name': 'rabbitmq', 'group': 'rabbitmq', 'enabled': True, 'image': 'kolla/rabbitmq:14.6.0', 'bootstrap_environment': {'KOLLA_BOOTSTRAP': None, 'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS', 'RABBITMQ_CLUSTER_COOKIE': 'uzSlcXaZq1s3rhM1Rr5l6CnuRTwMFjMlFcMj7NKl', 'RABBITMQ_LOG_DIR': '/var/log/kolla/rabbitmq'}, 'environment': {'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS', 'RABBITMQ_CLUSTER_COOKIE': 'uzSlcXaZq1s3rhM1Rr5l6CnuRTwMFjMlFcMj7NKl', 'RABBITMQ_LOG_DIR': '/var/log/kolla/rabbitmq'}, 'volumes': ['/etc/kolla/rabbitmq/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'rabbitmq:/var/lib/rabbitmq/', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'rabbitmq_management': {'enabled': 'yes', 'mode': 'http', 'port': '15672', 'host_group': 'rabbitmq'}, 'rabbitmq_outward_management': {'enabled': False, 'mode': 'http', 'port': '15674', 'host_group': 'outward-rabbitmq'}, 'rabbitmq_outward_external': {'enabled': False, 'mode': 'tcp', 'external': True, 'port': '5674', 'host_group': 'outward-rabbitmq', 'frontend_tcp_extra': ['timeout client 1h'], 'backend_tcp_extra': ['timeout server 1h']}}}})
+
+TASK [rabbitmq : Copying over config.json files for services] ******************
+changed: [localhost] => (item={'key': 'rabbitmq', 'value': {'container_name': 'rabbitmq', 'group': 'rabbitmq', 'enabled': True, 'image': 'kolla/rabbitmq:14.6.0', 'bootstrap_environment': {'KOLLA_BOOTSTRAP': None, 'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS', 'RABBITMQ_CLUSTER_COOKIE': 'uzSlcXaZq1s3rhM1Rr5l6CnuRTwMFjMlFcMj7NKl', 'RABBITMQ_LOG_DIR': '/var/log/kolla/rabbitmq'}, 'environment': {'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS', 'RABBITMQ_CLUSTER_COOKIE': 'uzSlcXaZq1s3rhM1Rr5l6CnuRTwMFjMlFcMj7NKl', 'RABBITMQ_LOG_DIR': '/var/log/kolla/rabbitmq'}, 'volumes': ['/etc/kolla/rabbitmq/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'rabbitmq:/var/lib/rabbitmq/', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'rabbitmq_management': {'enabled': 'yes', 'mode': 'http', 'port': '15672', 'host_group': 'rabbitmq'}, 'rabbitmq_outward_management': {'enabled': False, 'mode': 'http', 'port': '15674', 'host_group': 'outward-rabbitmq'}, 'rabbitmq_outward_external': {'enabled': False, 'mode': 'tcp', 'external': True, 'port': '5674', 'host_group': 'outward-rabbitmq', 'frontend_tcp_extra': ['timeout client 1h'], 'backend_tcp_extra': ['timeout server 1h']}}}})
+
+TASK [rabbitmq : Copying over rabbitmq-env.conf] *******************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/rabbitmq/templates/rabbitmq-env.conf.j2)
+
+TASK [rabbitmq : Copying over rabbitmq.conf] ***********************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/rabbitmq/templates/rabbitmq.conf.j2)
+
+TASK [rabbitmq : Copying over erl_inetrc] **************************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/rabbitmq/templates/erl_inetrc.j2)
+
+TASK [rabbitmq : Copying over advanced.config] *********************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/rabbitmq/templates/advanced.config.j2)
+
+TASK [rabbitmq : Copying over definitions.json] ********************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/rabbitmq/templates/definitions.json.j2)
+
+TASK [rabbitmq : Copying over enabled_plugins] *********************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/rabbitmq/templates/enabled_plugins.j2)
+
+TASK [rabbitmq : include_tasks] ************************************************
+skipping: [localhost]
+
+TASK [rabbitmq : Check rabbitmq containers] ************************************
+changed: [localhost] => (item={'key': 'rabbitmq', 'value': {'container_name': 'rabbitmq', 'group': 'rabbitmq', 'enabled': True, 'image': 'kolla/rabbitmq:14.6.0', 'bootstrap_environment': {'KOLLA_BOOTSTRAP': None, 'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS', 'RABBITMQ_CLUSTER_COOKIE': 'uzSlcXaZq1s3rhM1Rr5l6CnuRTwMFjMlFcMj7NKl', 'RABBITMQ_LOG_DIR': '/var/log/kolla/rabbitmq'}, 'environment': {'KOLLA_CONFIG_STRATEGY': 'COPY_ALWAYS', 'RABBITMQ_CLUSTER_COOKIE': 'uzSlcXaZq1s3rhM1Rr5l6CnuRTwMFjMlFcMj7NKl', 'RABBITMQ_LOG_DIR': '/var/log/kolla/rabbitmq'}, 'volumes': ['/etc/kolla/rabbitmq/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'rabbitmq:/var/lib/rabbitmq/', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'rabbitmq_management': {'enabled': 'yes', 'mode': 'http', 'port': '15672', 'host_group': 'rabbitmq'}, 'rabbitmq_outward_management': {'enabled': False, 'mode': 'http', 'port': '15674', 'host_group': 'outward-rabbitmq'}, 'rabbitmq_outward_external': {'enabled': False, 'mode': 'tcp', 'external': True, 'port': '5674', 'host_group': 'outward-rabbitmq', 'frontend_tcp_extra': ['timeout client 1h'], 'backend_tcp_extra': ['timeout server 1h']}}}})
+
+TASK [rabbitmq : Creating rabbitmq volume] *************************************
+changed: [localhost]
+
+TASK [rabbitmq : Running RabbitMQ bootstrap container] *************************
+changed: [localhost]
+
+TASK [rabbitmq : Flush handlers] ***********************************************
+
+RUNNING HANDLER [rabbitmq : Restart first rabbitmq container] ******************
+included: /usr/local/share/kolla-ansible/ansible/roles/rabbitmq/tasks/restart_services.yml for localhost
+
+RUNNING HANDLER [rabbitmq : Restart rabbitmq container] ************************
+changed: [localhost]
+
+RUNNING HANDLER [rabbitmq : Waiting for rabbitmq to start] *********************
+changed: [localhost]
+
+RUNNING HANDLER [rabbitmq : Restart remaining rabbitmq containers] *************
+skipping: [localhost] => (item=localhost) 
+
+PLAY [Apply role rabbitmq (outward)] *******************************************
+skipping: no hosts matched
+
+PLAY [Apply role etcd] *********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role keystone] *****************************************************
+
+TASK [keystone : include_tasks] ************************************************
+included: /usr/local/share/kolla-ansible/ansible/roles/keystone/tasks/deploy.yml for localhost
+
+TASK [keystone : Ensuring config directories exist] ****************************
+changed: [localhost] => (item={'key': 'keystone', 'value': {'container_name': 'keystone', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone:14.6.0', 'volumes': ['/etc/kolla/keystone/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'keystone_internal': {'enabled': 'yes', 'mode': 'http', 'external': False, 'tls_backend': 'no', 'port': '5000', 'listen_port': '5000', 'backend_http_extra': []}, 'keystone_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'tls_backend': 'no', 'port': '5000', 'listen_port': '5000', 'backend_http_extra': []}, 'keystone_admin': {'enabled': False, 'mode': 'http', 'external': False, 'tls_backend': 'no', 'port': '35357', 'listen_port': '35357'}}}})
+changed: [localhost] => (item={'key': 'keystone-ssh', 'value': {'container_name': 'keystone_ssh', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone-ssh:14.6.0', 'volumes': ['/etc/kolla/keystone-ssh/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'keystone-fernet', 'value': {'container_name': 'keystone_fernet', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone-fernet:14.6.0', 'volumes': ['/etc/kolla/keystone-fernet/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+
+TASK [keystone : Check if policies shall be overwritten] ***********************
+
+TASK [keystone : Set keystone policy file] *************************************
+skipping: [localhost]
+
+TASK [keystone : Check if Keystone domain-specific config is supplied] *********
+ok: [localhost]
+
+TASK [keystone : include_tasks] ************************************************
+skipping: [localhost]
+
+TASK [keystone : Copying over config.json files for services] ******************
+changed: [localhost] => (item={'key': 'keystone', 'value': {'container_name': 'keystone', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone:14.6.0', 'volumes': ['/etc/kolla/keystone/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'keystone_internal': {'enabled': 'yes', 'mode': 'http', 'external': False, 'tls_backend': 'no', 'port': '5000', 'listen_port': '5000', 'backend_http_extra': []}, 'keystone_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'tls_backend': 'no', 'port': '5000', 'listen_port': '5000', 'backend_http_extra': []}, 'keystone_admin': {'enabled': False, 'mode': 'http', 'external': False, 'tls_backend': 'no', 'port': '35357', 'listen_port': '35357'}}}})
+changed: [localhost] => (item={'key': 'keystone-ssh', 'value': {'container_name': 'keystone_ssh', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone-ssh:14.6.0', 'volumes': ['/etc/kolla/keystone-ssh/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'keystone-fernet', 'value': {'container_name': 'keystone_fernet', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone-fernet:14.6.0', 'volumes': ['/etc/kolla/keystone-fernet/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+
+TASK [keystone : Copying over keystone.conf] ***********************************
+changed: [localhost] => (item={'key': 'keystone', 'value': {'container_name': 'keystone', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone:14.6.0', 'volumes': ['/etc/kolla/keystone/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'keystone_internal': {'enabled': 'yes', 'mode': 'http', 'external': False, 'tls_backend': 'no', 'port': '5000', 'listen_port': '5000', 'backend_http_extra': []}, 'keystone_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'tls_backend': 'no', 'port': '5000', 'listen_port': '5000', 'backend_http_extra': []}, 'keystone_admin': {'enabled': False, 'mode': 'http', 'external': False, 'tls_backend': 'no', 'port': '35357', 'listen_port': '35357'}}}})
+skipping: [localhost] => (item={'key': 'keystone-ssh', 'value': {'container_name': 'keystone_ssh', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone-ssh:14.6.0', 'volumes': ['/etc/kolla/keystone-ssh/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+changed: [localhost] => (item={'key': 'keystone-fernet', 'value': {'container_name': 'keystone_fernet', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone-fernet:14.6.0', 'volumes': ['/etc/kolla/keystone-fernet/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+
+TASK [keystone : Copying keystone-startup script for keystone] *****************
+changed: [localhost]
+
+TASK [keystone : Create Keystone domain-specific config directory] *************
+skipping: [localhost]
+
+TASK [keystone : Get file list in custom domains folder] ***********************
+skipping: [localhost]
+
+TASK [keystone : Copying Keystone Domain specific settings] ********************
+
+TASK [keystone : Copying over existing policy file] ****************************
+skipping: [localhost] => (item={'key': 'keystone', 'value': {'container_name': 'keystone', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone:14.6.0', 'volumes': ['/etc/kolla/keystone/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'keystone_internal': {'enabled': 'yes', 'mode': 'http', 'external': False, 'tls_backend': 'no', 'port': '5000', 'listen_port': '5000', 'backend_http_extra': []}, 'keystone_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'tls_backend': 'no', 'port': '5000', 'listen_port': '5000', 'backend_http_extra': []}, 'keystone_admin': {'enabled': False, 'mode': 'http', 'external': False, 'tls_backend': 'no', 'port': '35357', 'listen_port': '35357'}}}}) 
+skipping: [localhost] => (item={'key': 'keystone-ssh', 'value': {'container_name': 'keystone_ssh', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone-ssh:14.6.0', 'volumes': ['/etc/kolla/keystone-ssh/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'keystone-fernet', 'value': {'container_name': 'keystone_fernet', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone-fernet:14.6.0', 'volumes': ['/etc/kolla/keystone-fernet/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+
+TASK [keystone : include_tasks] ************************************************
+skipping: [localhost]
+
+TASK [keystone : Copying over wsgi-keystone.conf] ******************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/keystone/templates/wsgi-keystone.conf.j2)
+
+TASK [keystone : Checking whether keystone-paste.ini file exists] **************
+ok: [localhost]
+
+TASK [keystone : Copying over keystone-paste.ini] ******************************
+skipping: [localhost]
+
+TASK [keystone : Generate the required cron jobs for the node] *****************
+ok: [localhost]
+
+TASK [keystone : Set fact with the generated cron jobs for building the crontab later] ***
+ok: [localhost]
+
+TASK [keystone : Copying files for keystone-fernet] ****************************
+changed: [localhost] => (item={'src': 'crontab.j2', 'dest': 'crontab'})
+changed: [localhost] => (item={'src': 'fernet-rotate.sh.j2', 'dest': 'fernet-rotate.sh'})
+changed: [localhost] => (item={'src': 'fernet-node-sync.sh.j2', 'dest': 'fernet-node-sync.sh'})
+changed: [localhost] => (item={'src': 'fernet-push.sh.j2', 'dest': 'fernet-push.sh'})
+changed: [localhost] => (item={'src': 'fernet-healthcheck.sh.j2', 'dest': 'fernet-healthcheck.sh'})
+changed: [localhost] => (item={'src': 'id_rsa', 'dest': 'id_rsa'})
+changed: [localhost] => (item={'src': 'ssh_config.j2', 'dest': 'ssh_config'})
+
+TASK [keystone : Copying files for keystone-ssh] *******************************
+changed: [localhost] => (item={'src': 'sshd_config.j2', 'dest': 'sshd_config'})
+changed: [localhost] => (item={'src': 'id_rsa.pub', 'dest': 'id_rsa.pub'})
+
+TASK [keystone : Check keystone containers] ************************************
+changed: [localhost] => (item={'key': 'keystone', 'value': {'container_name': 'keystone', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone:14.6.0', 'volumes': ['/etc/kolla/keystone/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'keystone_internal': {'enabled': 'yes', 'mode': 'http', 'external': False, 'tls_backend': 'no', 'port': '5000', 'listen_port': '5000', 'backend_http_extra': []}, 'keystone_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'tls_backend': 'no', 'port': '5000', 'listen_port': '5000', 'backend_http_extra': []}, 'keystone_admin': {'enabled': False, 'mode': 'http', 'external': False, 'tls_backend': 'no', 'port': '35357', 'listen_port': '35357'}}}})
+changed: [localhost] => (item={'key': 'keystone-ssh', 'value': {'container_name': 'keystone_ssh', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone-ssh:14.6.0', 'volumes': ['/etc/kolla/keystone-ssh/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'keystone-fernet', 'value': {'container_name': 'keystone_fernet', 'group': 'keystone', 'enabled': True, 'image': 'kolla/keystone-fernet:14.6.0', 'volumes': ['/etc/kolla/keystone-fernet/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', 'keystone_fernet_tokens:/etc/keystone/fernet-keys'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+
+TASK [keystone : include_tasks] ************************************************
+skipping: [localhost]
+
+TASK [keystone : Creating keystone database] ***********************************
+changed: [localhost]
+
+TASK [keystone : Creating Keystone database user and setting permissions] ******
+changed: [localhost]
+
+TASK [keystone : Checking for any running keystone_fernet containers] **********
+ok: [localhost]
+
+TASK [keystone : Group nodes where keystone_fernet is running] *****************
+ok: [localhost]
+
+TASK [keystone : Fail if any hosts need bootstrapping and not all hosts targeted] ***
+skipping: [localhost]
+
+TASK [keystone : Running Keystone bootstrap container] *************************
+changed: [localhost]
+
+TASK [keystone : Running Keystone fernet bootstrap container] ******************
+changed: [localhost]
+
+TASK [keystone : Flush handlers] ***********************************************
+
+RUNNING HANDLER [keystone : Restart keystone-ssh container] ********************
+changed: [localhost]
+
+RUNNING HANDLER [keystone : Restart keystone-fernet container] *****************
+changed: [localhost]
+
+RUNNING HANDLER [keystone : Restart keystone container] ************************
+changed: [localhost]
+
+TASK [keystone : include_tasks] ************************************************
+included: /usr/local/share/kolla-ansible/ansible/roles/keystone/tasks/distribute_fernet.yml for localhost
+
+TASK [keystone : Waiting for Keystone SSH port to be UP] ***********************
+ok: [localhost]
+
+TASK [keystone : Run key distribution] *****************************************
+changed: [localhost]
+
+TASK [keystone : Creating admin project, user, role, service, and endpoint] ****
+changed: [localhost] => (item=RegionOne)
+
+TASK [service-ks-register : keystone | Creating services] **********************
+changed: [localhost] => (item={'name': 'keystone', 'service_type': 'identity'})
+
+TASK [service-ks-register : keystone | Creating endpoints] *********************
+ok: [localhost] => (item={'service': 'keystone', 'url': 'http://169.16.1.148:5000', 'interface': 'internal'})
+ok: [localhost] => (item={'service': 'keystone', 'url': 'http://169.16.1.148:5000', 'interface': 'public'})
+
+TASK [service-ks-register : keystone | Creating projects] **********************
+
+TASK [service-ks-register : keystone | Creating users] *************************
+
+TASK [service-ks-register : keystone | Creating roles] *************************
+
+TASK [service-ks-register : keystone | Granting user roles] ********************
+
+TASK [keystone : Creating default user role] ***********************************
+changed: [localhost]
+
+TASK [keystone : include_tasks] ************************************************
+skipping: [localhost]
+
+PLAY [Apply role opensearch] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role swift] ********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role ceph-rgw] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role glance] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role ironic] *******************************************************
+
+TASK [ironic : include_tasks] **************************************************
+included: /usr/local/share/kolla-ansible/ansible/roles/ironic/tasks/deploy.yml for localhost
+
+TASK [service-ks-register : ironic | Creating services] ************************
+changed: [localhost] => (item={'name': 'ironic', 'service_type': 'baremetal'})
+changed: [localhost] => (item={'name': 'ironic-inspector', 'service_type': 'baremetal-introspection'})
+
+TASK [service-ks-register : ironic | Creating endpoints] ***********************
+changed: [localhost] => (item={'service': 'ironic', 'url': 'http://169.16.1.148:6385', 'interface': 'internal'})
+changed: [localhost] => (item={'service': 'ironic', 'url': 'http://169.16.1.148:6385', 'interface': 'public'})
+changed: [localhost] => (item={'service': 'ironic-inspector', 'url': 'http://169.16.1.148:5050', 'interface': 'internal'})
+changed: [localhost] => (item={'service': 'ironic-inspector', 'url': 'http://169.16.1.148:5050', 'interface': 'public'})
+
+TASK [service-ks-register : ironic | Creating projects] ************************
+changed: [localhost] => (item=service)
+
+TASK [service-ks-register : ironic | Creating users] ***************************
+changed: [localhost] => (item={'user': 'ironic', 'project': 'service'})
+changed: [localhost] => (item={'user': 'ironic-inspector', 'project': 'service'})
+
+TASK [service-ks-register : ironic | Creating roles] ***************************
+ok: [localhost] => (item=admin)
+
+TASK [service-ks-register : ironic | Granting user roles] **********************
+changed: [localhost] => (item={'user': 'ironic', 'role': 'admin', 'project': 'service'})
+changed: [localhost] => (item={'user': 'ironic-inspector', 'role': 'admin', 'project': 'service'})
+
+TASK [module-load : Load modules] **********************************************
+changed: [localhost] => (item=iscsi_tcp)
+
+TASK [module-load : Persist modules via modules-load.d] ************************
+changed: [localhost] => (item=iscsi_tcp)
+
+TASK [module-load : Drop module persistence] ***********************************
+skipping: [localhost] => (item=iscsi_tcp) 
+
+TASK [ironic : Ensuring config directories exist] ******************************
+changed: [localhost] => (item={'key': 'ironic-api', 'value': {'container_name': 'ironic_api', 'group': 'ironic-api', 'enabled': True, 'image': 'kolla/ironic-api:14.6.0', 'volumes': ['/etc/kolla/ironic-api/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_api': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}, 'ironic_api_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}}}})
+changed: [localhost] => (item={'key': 'ironic-conductor', 'value': {'container_name': 'ironic_conductor', 'group': 'ironic-conductor', 'enabled': True, 'image': 'kolla/ironic-conductor:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-conductor/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/sys:/sys', '/dev:/dev', '/run:/run:shared', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'ironic-inspector', 'value': {'container_name': 'ironic_inspector', 'group': 'ironic-inspector', 'enabled': True, 'image': 'kolla/ironic-inspector:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-inspector/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic_inspector_dhcp_hosts:/var/lib/ironic-inspector/dhcp-hostsdir', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_inspector': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '5050', 'listen_port': '5050'}, 'ironic_inspector_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '5050', 'listen_port': '5050'}}}})
+changed: [localhost] => (item={'key': 'ironic-tftp', 'value': {'container_name': 'ironic_tftp', 'group': 'ironic-tftp', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'environment': {'TFTPBOOT_PATH': '/var/lib/ironic/tftpboot', 'HTTPBOOT_PATH': '/var/lib/ironic/httpboot'}, 'volumes': ['/etc/kolla/ironic-tftp/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+changed: [localhost] => (item={'key': 'ironic-http', 'value': {'container_name': 'ironic_http', 'group': 'ironic-http', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'volumes': ['/etc/kolla/ironic-http/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'ironic-dnsmasq', 'value': {'container_name': 'ironic_dnsmasq', 'group': 'ironic-inspector', 'enabled': True, 'cap_add': ['NET_ADMIN'], 'image': 'kolla/dnsmasq:14.6.0', 'volumes': ['/etc/kolla/ironic-dnsmasq/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', 'ironic_inspector_dhcp_hosts:/etc/dnsmasq/dhcp-hostsdir:ro'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [ironic : Check if Ironic policies shall be overwritten] ******************
+
+TASK [ironic : Check if Ironic Inspector policies shall be overwritten] ********
+
+TASK [ironic : Set ironic policy file] *****************************************
+skipping: [localhost]
+
+TASK [ironic : Set ironic-inspector policy file] *******************************
+skipping: [localhost]
+
+TASK [ironic : include_tasks] **************************************************
+skipping: [localhost]
+
+TASK [ironic : Copying over config.json files for services] ********************
+changed: [localhost] => (item={'key': 'ironic-api', 'value': {'container_name': 'ironic_api', 'group': 'ironic-api', 'enabled': True, 'image': 'kolla/ironic-api:14.6.0', 'volumes': ['/etc/kolla/ironic-api/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_api': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}, 'ironic_api_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}}}})
+changed: [localhost] => (item={'key': 'ironic-conductor', 'value': {'container_name': 'ironic_conductor', 'group': 'ironic-conductor', 'enabled': True, 'image': 'kolla/ironic-conductor:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-conductor/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/sys:/sys', '/dev:/dev', '/run:/run:shared', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'ironic-inspector', 'value': {'container_name': 'ironic_inspector', 'group': 'ironic-inspector', 'enabled': True, 'image': 'kolla/ironic-inspector:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-inspector/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic_inspector_dhcp_hosts:/var/lib/ironic-inspector/dhcp-hostsdir', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_inspector': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '5050', 'listen_port': '5050'}, 'ironic_inspector_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '5050', 'listen_port': '5050'}}}})
+changed: [localhost] => (item={'key': 'ironic-tftp', 'value': {'container_name': 'ironic_tftp', 'group': 'ironic-tftp', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'environment': {'TFTPBOOT_PATH': '/var/lib/ironic/tftpboot', 'HTTPBOOT_PATH': '/var/lib/ironic/httpboot'}, 'volumes': ['/etc/kolla/ironic-tftp/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+changed: [localhost] => (item={'key': 'ironic-http', 'value': {'container_name': 'ironic_http', 'group': 'ironic-http', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'volumes': ['/etc/kolla/ironic-http/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'ironic-dnsmasq', 'value': {'container_name': 'ironic_dnsmasq', 'group': 'ironic-inspector', 'enabled': True, 'cap_add': ['NET_ADMIN'], 'image': 'kolla/dnsmasq:14.6.0', 'volumes': ['/etc/kolla/ironic-dnsmasq/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', 'ironic_inspector_dhcp_hosts:/etc/dnsmasq/dhcp-hostsdir:ro'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [ironic : Copying over ironic.conf] ***************************************
+changed: [localhost] => (item={'key': 'ironic-api', 'value': {'container_name': 'ironic_api', 'group': 'ironic-api', 'enabled': True, 'image': 'kolla/ironic-api:14.6.0', 'volumes': ['/etc/kolla/ironic-api/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_api': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}, 'ironic_api_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}}}})
+changed: [localhost] => (item={'key': 'ironic-conductor', 'value': {'container_name': 'ironic_conductor', 'group': 'ironic-conductor', 'enabled': True, 'image': 'kolla/ironic-conductor:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-conductor/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/sys:/sys', '/dev:/dev', '/run:/run:shared', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'ironic-inspector', 'value': {'container_name': 'ironic_inspector', 'group': 'ironic-inspector', 'enabled': True, 'image': 'kolla/ironic-inspector:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-inspector/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic_inspector_dhcp_hosts:/var/lib/ironic-inspector/dhcp-hostsdir', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_inspector': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '5050', 'listen_port': '5050'}, 'ironic_inspector_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '5050', 'listen_port': '5050'}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-tftp', 'value': {'container_name': 'ironic_tftp', 'group': 'ironic-tftp', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'environment': {'TFTPBOOT_PATH': '/var/lib/ironic/tftpboot', 'HTTPBOOT_PATH': '/var/lib/ironic/httpboot'}, 'volumes': ['/etc/kolla/ironic-tftp/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-http', 'value': {'container_name': 'ironic_http', 'group': 'ironic-http', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'volumes': ['/etc/kolla/ironic-http/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'ironic-dnsmasq', 'value': {'container_name': 'ironic_dnsmasq', 'group': 'ironic-inspector', 'enabled': True, 'cap_add': ['NET_ADMIN'], 'image': 'kolla/dnsmasq:14.6.0', 'volumes': ['/etc/kolla/ironic-dnsmasq/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', 'ironic_inspector_dhcp_hosts:/etc/dnsmasq/dhcp-hostsdir:ro'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+
+TASK [ironic : Copying over inspector.conf] ************************************
+changed: [localhost]
+
+TASK [ironic : Copying over dnsmasq.conf] **************************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/ironic/templates/ironic-dnsmasq.conf.j2)
+
+TASK [ironic : Copying pxelinux.cfg default] ***********************************
+skipping: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/ironic/templates/pxelinux.default.j2) 
+
+TASK [ironic : Copying ironic_pxe_uefi.cfg default] ****************************
+skipping: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/ironic/templates/ironic_pxe_uefi.default.j2) 
+
+TASK [ironic : Copying ironic-agent kernel and initramfs (PXE)] ****************
+skipping: [localhost] => (item=ironic-agent.kernel) 
+skipping: [localhost] => (item=ironic-agent.initramfs) 
+skipping: [localhost] => (item=ir-deploy-redfish.efiboot) 
+skipping: [localhost] => (item=rhel009_wholedisk_image.qcow2) 
+
+TASK [ironic : Copying ironic-agent kernel and initramfs (iPXE)] ***************
+changed: [localhost] => (item=ironic-agent.kernel)
+changed: [localhost] => (item=ironic-agent.initramfs)
+changed: [localhost] => (item=ir-deploy-redfish.efiboot)
+changed: [localhost] => (item=rhel009_wholedisk_image.qcow2)
+
+TASK [ironic : Copying inspector.ipxe] *****************************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/ironic/templates/inspector.ipxe.j2)
+
+TASK [ironic : Copying ironic-http-httpd.conf] *********************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/ironic/templates/ironic-http-httpd.conf.j2)
+
+TASK [ironic : Copying over existing Ironic policy file] ***********************
+skipping: [localhost] => (item={'key': 'ironic-api', 'value': {'container_name': 'ironic_api', 'group': 'ironic-api', 'enabled': True, 'image': 'kolla/ironic-api:14.6.0', 'volumes': ['/etc/kolla/ironic-api/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_api': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}, 'ironic_api_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-conductor', 'value': {'container_name': 'ironic_conductor', 'group': 'ironic-conductor', 'enabled': True, 'image': 'kolla/ironic-conductor:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-conductor/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/sys:/sys', '/dev:/dev', '/run:/run:shared', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'ironic-inspector', 'value': {'container_name': 'ironic_inspector', 'group': 'ironic-inspector', 'enabled': True, 'image': 'kolla/ironic-inspector:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-inspector/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic_inspector_dhcp_hosts:/var/lib/ironic-inspector/dhcp-hostsdir', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_inspector': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '5050', 'listen_port': '5050'}, 'ironic_inspector_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '5050', 'listen_port': '5050'}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-tftp', 'value': {'container_name': 'ironic_tftp', 'group': 'ironic-tftp', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'environment': {'TFTPBOOT_PATH': '/var/lib/ironic/tftpboot', 'HTTPBOOT_PATH': '/var/lib/ironic/httpboot'}, 'volumes': ['/etc/kolla/ironic-tftp/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-http', 'value': {'container_name': 'ironic_http', 'group': 'ironic-http', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'volumes': ['/etc/kolla/ironic-http/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'ironic-dnsmasq', 'value': {'container_name': 'ironic_dnsmasq', 'group': 'ironic-inspector', 'enabled': True, 'cap_add': ['NET_ADMIN'], 'image': 'kolla/dnsmasq:14.6.0', 'volumes': ['/etc/kolla/ironic-dnsmasq/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', 'ironic_inspector_dhcp_hosts:/etc/dnsmasq/dhcp-hostsdir:ro'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+
+TASK [ironic : Copying over existing Ironic Inspector policy file] *************
+skipping: [localhost] => (item={'key': 'ironic-api', 'value': {'container_name': 'ironic_api', 'group': 'ironic-api', 'enabled': True, 'image': 'kolla/ironic-api:14.6.0', 'volumes': ['/etc/kolla/ironic-api/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_api': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}, 'ironic_api_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-conductor', 'value': {'container_name': 'ironic_conductor', 'group': 'ironic-conductor', 'enabled': True, 'image': 'kolla/ironic-conductor:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-conductor/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/sys:/sys', '/dev:/dev', '/run:/run:shared', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'ironic-inspector', 'value': {'container_name': 'ironic_inspector', 'group': 'ironic-inspector', 'enabled': True, 'image': 'kolla/ironic-inspector:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-inspector/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic_inspector_dhcp_hosts:/var/lib/ironic-inspector/dhcp-hostsdir', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_inspector': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '5050', 'listen_port': '5050'}, 'ironic_inspector_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '5050', 'listen_port': '5050'}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-tftp', 'value': {'container_name': 'ironic_tftp', 'group': 'ironic-tftp', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'environment': {'TFTPBOOT_PATH': '/var/lib/ironic/tftpboot', 'HTTPBOOT_PATH': '/var/lib/ironic/httpboot'}, 'volumes': ['/etc/kolla/ironic-tftp/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-http', 'value': {'container_name': 'ironic_http', 'group': 'ironic-http', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'volumes': ['/etc/kolla/ironic-http/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'ironic-dnsmasq', 'value': {'container_name': 'ironic_dnsmasq', 'group': 'ironic-inspector', 'enabled': True, 'cap_add': ['NET_ADMIN'], 'image': 'kolla/dnsmasq:14.6.0', 'volumes': ['/etc/kolla/ironic-dnsmasq/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', 'ironic_inspector_dhcp_hosts:/etc/dnsmasq/dhcp-hostsdir:ro'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+
+TASK [ironic : Copying over ironic-api-wsgi.conf] ******************************
+changed: [localhost]
+
+TASK [ironic : Check ironic containers] ****************************************
+changed: [localhost] => (item={'key': 'ironic-api', 'value': {'container_name': 'ironic_api', 'group': 'ironic-api', 'enabled': True, 'image': 'kolla/ironic-api:14.6.0', 'volumes': ['/etc/kolla/ironic-api/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_api': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}, 'ironic_api_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '6385', 'listen_port': '6385', 'tls_backend': 'no'}}}})
+changed: [localhost] => (item={'key': 'ironic-conductor', 'value': {'container_name': 'ironic_conductor', 'group': 'ironic-conductor', 'enabled': True, 'image': 'kolla/ironic-conductor:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-conductor/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/sys:/sys', '/dev:/dev', '/run:/run:shared', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'ironic-inspector', 'value': {'container_name': 'ironic_inspector', 'group': 'ironic-inspector', 'enabled': True, 'image': 'kolla/ironic-inspector:14.6.0', 'privileged': True, 'volumes': ['/etc/kolla/ironic-inspector/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic_inspector_dhcp_hosts:/var/lib/ironic-inspector/dhcp-hostsdir', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'ironic_inspector': {'enabled': 'yes', 'mode': 'http', 'external': False, 'port': '5050', 'listen_port': '5050'}, 'ironic_inspector_external': {'enabled': 'yes', 'mode': 'http', 'external': True, 'port': '5050', 'listen_port': '5050'}}}})
+changed: [localhost] => (item={'key': 'ironic-tftp', 'value': {'container_name': 'ironic_tftp', 'group': 'ironic-tftp', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'environment': {'TFTPBOOT_PATH': '/var/lib/ironic/tftpboot', 'HTTPBOOT_PATH': '/var/lib/ironic/httpboot'}, 'volumes': ['/etc/kolla/ironic-tftp/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+changed: [localhost] => (item={'key': 'ironic-http', 'value': {'container_name': 'ironic_http', 'group': 'ironic-http', 'enabled': True, 'image': 'kolla/ironic-pxe:14.6.0', 'volumes': ['/etc/kolla/ironic-http/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'ironic:/var/lib/ironic', 'kolla_logs:/var/log/kolla'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'ironic-dnsmasq', 'value': {'container_name': 'ironic_dnsmasq', 'group': 'ironic-inspector', 'enabled': True, 'cap_add': ['NET_ADMIN'], 'image': 'kolla/dnsmasq:14.6.0', 'volumes': ['/etc/kolla/ironic-dnsmasq/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla', 'ironic:/var/lib/ironic', 'ironic_inspector_dhcp_hosts:/etc/dnsmasq/dhcp-hostsdir:ro'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}})
+
+TASK [ironic : include_tasks] **************************************************
+skipping: [localhost]
+
+TASK [ironic : Creating Ironic database] ***************************************
+changed: [localhost] => (item={'database_name': 'ironic', 'group': 'ironic-api'})
+changed: [localhost] => (item={'database_name': 'ironic_inspector', 'group': 'ironic-inspector'})
+
+TASK [ironic : Creating Ironic database user and setting permissions] **********
+changed: [localhost] => (item=ironic)
+changed: [localhost] => (item=ironic_inspector)
+
+TASK [ironic : Running Ironic bootstrap container] *****************************
+changed: [localhost]
+
+TASK [ironic : Running Ironic Inspector bootstrap container] *******************
+changed: [localhost]
+
+TASK [ironic : Running ironic-tftp bootstrap container] ************************
+changed: [localhost]
+
+TASK [ironic : Flush handlers] *************************************************
+
+RUNNING HANDLER [ironic : Restart ironic-conductor container] ******************
+changed: [localhost]
+
+RUNNING HANDLER [ironic : Restart ironic-api container] ************************
+changed: [localhost]
+
+RUNNING HANDLER [ironic : Restart ironic-inspector container] ******************
+changed: [localhost]
+
+RUNNING HANDLER [ironic : Restart ironic-tftp container] ***********************
+changed: [localhost]
+
+RUNNING HANDLER [ironic : Restart ironic-http container] ***********************
+changed: [localhost]
+
+RUNNING HANDLER [ironic : Restart ironic-dnsmasq container] ********************
+changed: [localhost]
+
+TASK [ironic : Flush and delete ironic-inspector iptables chain] ***************
+ok: [localhost] => (item=flush)
+ok: [localhost] => (item=delete-chain)
+
+PLAY [Apply role cinder] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role placement] ****************************************************
+skipping: no hosts matched
+
+PLAY [Bootstrap nova API databases] ********************************************
+skipping: no hosts matched
+
+PLAY [Bootstrap nova cell databases] *******************************************
+skipping: no hosts matched
+
+PLAY [Apply role nova] *********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role nova-cell] ****************************************************
+skipping: no hosts matched
+
+PLAY [Refresh nova scheduler cell cache] ***************************************
+skipping: no hosts matched
+
+PLAY [Reload global Nova super conductor services] *****************************
+skipping: no hosts matched
+
+PLAY [Reload Nova cell services] ***********************************************
+skipping: no hosts matched
+
+PLAY [Reload global Nova API services] *****************************************
+skipping: no hosts matched
+
+PLAY [Run Nova API online data migrations] *************************************
+skipping: no hosts matched
+
+PLAY [Run Nova cell online data migrations] ************************************
+skipping: no hosts matched
+
+PLAY [Apply role openvswitch] **************************************************
+skipping: no hosts matched
+
+PLAY [Apply role ovs-dpdk] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role ovn-controller] ***********************************************
+skipping: no hosts matched
+
+PLAY [Apply role ovn-db] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role neutron] ******************************************************
+
+TASK [neutron : include_tasks] *************************************************
+included: /usr/local/share/kolla-ansible/ansible/roles/neutron/tasks/deploy.yml for localhost
+
+TASK [service-ks-register : neutron | Creating services] ***********************
+changed: [localhost] => (item={'name': 'neutron', 'service_type': 'network'})
+
+TASK [service-ks-register : neutron | Creating endpoints] **********************
+changed: [localhost] => (item={'service': 'neutron', 'url': 'http://169.16.1.148:9696', 'interface': 'internal'})
+changed: [localhost] => (item={'service': 'neutron', 'url': 'http://169.16.1.148:9696', 'interface': 'public'})
+
+TASK [service-ks-register : neutron | Creating projects] ***********************
+ok: [localhost] => (item=service)
+
+TASK [service-ks-register : neutron | Creating users] **************************
+changed: [localhost] => (item={'user': 'neutron', 'project': 'service'})
+
+TASK [service-ks-register : neutron | Creating roles] **************************
+ok: [localhost] => (item=admin)
+
+TASK [service-ks-register : neutron | Granting user roles] *********************
+changed: [localhost] => (item={'user': 'neutron', 'role': 'admin', 'project': 'service'})
+
+TASK [neutron : include_tasks] *************************************************
+skipping: [localhost]
+
+TASK [Load and persist ip6_tables module] **************************************
+
+TASK [module-load : Load modules] **********************************************
+changed: [localhost] => (item=ip6_tables)
+
+TASK [module-load : Persist modules via modules-load.d] ************************
+changed: [localhost] => (item=ip6_tables)
+
+TASK [module-load : Drop module persistence] ***********************************
+skipping: [localhost] => (item=ip6_tables) 
+
+TASK [neutron : Setting sysctl values] *****************************************
+changed: [localhost] => (item={'name': 'net.ipv4.neigh.default.gc_thresh1', 'value': 128})
+changed: [localhost] => (item={'name': 'net.ipv4.neigh.default.gc_thresh2', 'value': 28672})
+changed: [localhost] => (item={'name': 'net.ipv4.neigh.default.gc_thresh3', 'value': 32768})
+changed: [localhost] => (item={'name': 'net.ipv6.neigh.default.gc_thresh1', 'value': '128'})
+changed: [localhost] => (item={'name': 'net.ipv6.neigh.default.gc_thresh2', 'value': '28672'})
+changed: [localhost] => (item={'name': 'net.ipv6.neigh.default.gc_thresh3', 'value': '32768'})
+
+TASK [neutron : Ensuring config directories exist] *****************************
+changed: [localhost] => (item={'key': 'neutron-server', 'value': {'container_name': 'neutron_server', 'image': 'kolla/neutron-server:14.6.0', 'enabled': True, 'group': 'neutron-server', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-server/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_server': {'enabled': True, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696'}, 'neutron_server_external': {'enabled': True, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696'}}}})
+changed: [localhost] => (item={'key': 'neutron-openvswitch-agent', 'value': {'container_name': 'neutron_openvswitch_agent', 'image': 'kolla/neutron-openvswitch-agent:14.6.0', 'enabled': True, 'privileged': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-openvswitch-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/run/openvswitch:/run/openvswitch:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-linuxbridge-agent', 'value': {'container_name': 'neutron_linuxbridge_agent', 'image': 'kolla/neutron-linuxbridge-agent:14.6.0', 'privileged': True, 'enabled': False, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-linuxbridge-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+changed: [localhost] => (item={'key': 'neutron-dhcp-agent', 'value': {'container_name': 'neutron_dhcp_agent', 'image': 'kolla/neutron-dhcp-agent:14.6.0', 'privileged': True, 'enabled': True, 'group': 'neutron-dhcp-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-dhcp-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'neutron-l3-agent', 'value': {'container_name': 'neutron_l3_agent', 'image': 'kolla/neutron-l3-agent:14.6.0', 'privileged': True, 'enabled': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-l3-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-sriov-agent', 'value': {'container_name': 'neutron_sriov_agent', 'image': 'kolla/neutron-sriov-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-sriov-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-mlnx-agent', 'value': {'container_name': 'neutron_mlnx_agent', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-mlnx-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-eswitchd', 'value': {'container_name': 'neutron_eswitchd', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-eswitchd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/run/libvirt:/run/libvirt:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+changed: [localhost] => (item={'key': 'neutron-metadata-agent', 'value': {'container_name': 'neutron_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': True, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-ovn-metadata-agent', 'value': {'container_name': 'neutron_ovn_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-ovn-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/openvswitch:/run/openvswitch:shared', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-bgp-dragent', 'value': {'container_name': 'neutron_bgp_dragent', 'image': 'kolla/neutron-bgp-dragent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-bgp-dragent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-bgp-dragent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-infoblox-ipam-agent', 'value': {'container_name': 'neutron_infoblox_ipam_agent', 'image': 'kolla/neutron-infoblox-ipam-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-infoblox-ipam-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-infoblox-ipam-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metering-agent', 'value': {'container_name': 'neutron_metering_agent', 'image': 'kolla/neutron-metering-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-metering-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metering-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-neutron-agent', 'value': {'container_name': 'ironic_neutron_agent', 'image': 'kolla/ironic-neutron-agent:14.6.0', 'privileged': False, 'enabled': False, 'group': 'ironic-neutron-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/ironic-neutron-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-tls-proxy', 'value': {'container_name': 'neutron_tls_proxy', 'group': 'neutron-server', 'host_in_groups': True, 'enabled': 'no', 'image': 'kolla/haproxy:14.6.0', 'volumes': ['/etc/kolla/neutron-tls-proxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_tls_proxy': {'enabled': False, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}, 'neutron_tls_proxy_external': {'enabled': False, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}}}}) 
+
+TASK [neutron : Check if extra ml2 plugins exists] *****************************
+ok: [localhost]
+
+TASK [neutron : include_tasks] *************************************************
+skipping: [localhost]
+
+TASK [neutron : Creating TLS backend PEM File] *********************************
+skipping: [localhost]
+
+TASK [neutron : Check if policies shall be overwritten] ************************
+
+TASK [neutron : Set neutron policy file] ***************************************
+skipping: [localhost]
+
+TASK [neutron : Copying over existing policy file] *****************************
+skipping: [localhost] => (item={'key': 'neutron-server', 'value': {'container_name': 'neutron_server', 'image': 'kolla/neutron-server:14.6.0', 'enabled': True, 'group': 'neutron-server', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-server/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_server': {'enabled': True, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696'}, 'neutron_server_external': {'enabled': True, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696'}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-openvswitch-agent', 'value': {'container_name': 'neutron_openvswitch_agent', 'image': 'kolla/neutron-openvswitch-agent:14.6.0', 'enabled': True, 'privileged': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-openvswitch-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/run/openvswitch:/run/openvswitch:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-linuxbridge-agent', 'value': {'container_name': 'neutron_linuxbridge_agent', 'image': 'kolla/neutron-linuxbridge-agent:14.6.0', 'privileged': True, 'enabled': False, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-linuxbridge-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-dhcp-agent', 'value': {'container_name': 'neutron_dhcp_agent', 'image': 'kolla/neutron-dhcp-agent:14.6.0', 'privileged': True, 'enabled': True, 'group': 'neutron-dhcp-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-dhcp-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-l3-agent', 'value': {'container_name': 'neutron_l3_agent', 'image': 'kolla/neutron-l3-agent:14.6.0', 'privileged': True, 'enabled': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-l3-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-sriov-agent', 'value': {'container_name': 'neutron_sriov_agent', 'image': 'kolla/neutron-sriov-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-sriov-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-mlnx-agent', 'value': {'container_name': 'neutron_mlnx_agent', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-mlnx-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-eswitchd', 'value': {'container_name': 'neutron_eswitchd', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-eswitchd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/run/libvirt:/run/libvirt:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metadata-agent', 'value': {'container_name': 'neutron_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': True, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-ovn-metadata-agent', 'value': {'container_name': 'neutron_ovn_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-ovn-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/openvswitch:/run/openvswitch:shared', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-bgp-dragent', 'value': {'container_name': 'neutron_bgp_dragent', 'image': 'kolla/neutron-bgp-dragent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-bgp-dragent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-bgp-dragent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-infoblox-ipam-agent', 'value': {'container_name': 'neutron_infoblox_ipam_agent', 'image': 'kolla/neutron-infoblox-ipam-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-infoblox-ipam-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-infoblox-ipam-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metering-agent', 'value': {'container_name': 'neutron_metering_agent', 'image': 'kolla/neutron-metering-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-metering-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metering-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-neutron-agent', 'value': {'container_name': 'ironic_neutron_agent', 'image': 'kolla/ironic-neutron-agent:14.6.0', 'privileged': False, 'enabled': False, 'group': 'ironic-neutron-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/ironic-neutron-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-tls-proxy', 'value': {'container_name': 'neutron_tls_proxy', 'group': 'neutron-server', 'host_in_groups': True, 'enabled': 'no', 'image': 'kolla/haproxy:14.6.0', 'volumes': ['/etc/kolla/neutron-tls-proxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_tls_proxy': {'enabled': False, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}, 'neutron_tls_proxy_external': {'enabled': False, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}}}}) 
+
+TASK [neutron : Copying over config.json files for services] *******************
+changed: [localhost] => (item={'key': 'neutron-server', 'value': {'container_name': 'neutron_server', 'image': 'kolla/neutron-server:14.6.0', 'enabled': True, 'group': 'neutron-server', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-server/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_server': {'enabled': True, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696'}, 'neutron_server_external': {'enabled': True, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696'}}}})
+changed: [localhost] => (item={'key': 'neutron-openvswitch-agent', 'value': {'container_name': 'neutron_openvswitch_agent', 'image': 'kolla/neutron-openvswitch-agent:14.6.0', 'enabled': True, 'privileged': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-openvswitch-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/run/openvswitch:/run/openvswitch:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-linuxbridge-agent', 'value': {'container_name': 'neutron_linuxbridge_agent', 'image': 'kolla/neutron-linuxbridge-agent:14.6.0', 'privileged': True, 'enabled': False, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-linuxbridge-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+changed: [localhost] => (item={'key': 'neutron-dhcp-agent', 'value': {'container_name': 'neutron_dhcp_agent', 'image': 'kolla/neutron-dhcp-agent:14.6.0', 'privileged': True, 'enabled': True, 'group': 'neutron-dhcp-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-dhcp-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'neutron-l3-agent', 'value': {'container_name': 'neutron_l3_agent', 'image': 'kolla/neutron-l3-agent:14.6.0', 'privileged': True, 'enabled': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-l3-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-sriov-agent', 'value': {'container_name': 'neutron_sriov_agent', 'image': 'kolla/neutron-sriov-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-sriov-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-mlnx-agent', 'value': {'container_name': 'neutron_mlnx_agent', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-mlnx-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-eswitchd', 'value': {'container_name': 'neutron_eswitchd', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-eswitchd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/run/libvirt:/run/libvirt:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+changed: [localhost] => (item={'key': 'neutron-metadata-agent', 'value': {'container_name': 'neutron_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': True, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-ovn-metadata-agent', 'value': {'container_name': 'neutron_ovn_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-ovn-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/openvswitch:/run/openvswitch:shared', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-bgp-dragent', 'value': {'container_name': 'neutron_bgp_dragent', 'image': 'kolla/neutron-bgp-dragent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-bgp-dragent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-bgp-dragent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-infoblox-ipam-agent', 'value': {'container_name': 'neutron_infoblox_ipam_agent', 'image': 'kolla/neutron-infoblox-ipam-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-infoblox-ipam-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-infoblox-ipam-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metering-agent', 'value': {'container_name': 'neutron_metering_agent', 'image': 'kolla/neutron-metering-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-metering-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metering-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-neutron-agent', 'value': {'container_name': 'ironic_neutron_agent', 'image': 'kolla/ironic-neutron-agent:14.6.0', 'privileged': False, 'enabled': False, 'group': 'ironic-neutron-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/ironic-neutron-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-tls-proxy', 'value': {'container_name': 'neutron_tls_proxy', 'group': 'neutron-server', 'host_in_groups': True, 'enabled': 'no', 'image': 'kolla/haproxy:14.6.0', 'volumes': ['/etc/kolla/neutron-tls-proxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_tls_proxy': {'enabled': False, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}, 'neutron_tls_proxy_external': {'enabled': False, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}}}}) 
+
+TASK [neutron : Copying over neutron.conf] *************************************
+changed: [localhost] => (item={'key': 'neutron-server', 'value': {'container_name': 'neutron_server', 'image': 'kolla/neutron-server:14.6.0', 'enabled': True, 'group': 'neutron-server', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-server/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_server': {'enabled': True, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696'}, 'neutron_server_external': {'enabled': True, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696'}}}})
+changed: [localhost] => (item={'key': 'neutron-openvswitch-agent', 'value': {'container_name': 'neutron_openvswitch_agent', 'image': 'kolla/neutron-openvswitch-agent:14.6.0', 'enabled': True, 'privileged': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-openvswitch-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/run/openvswitch:/run/openvswitch:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-linuxbridge-agent', 'value': {'container_name': 'neutron_linuxbridge_agent', 'image': 'kolla/neutron-linuxbridge-agent:14.6.0', 'privileged': True, 'enabled': False, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-linuxbridge-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+changed: [localhost] => (item={'key': 'neutron-dhcp-agent', 'value': {'container_name': 'neutron_dhcp_agent', 'image': 'kolla/neutron-dhcp-agent:14.6.0', 'privileged': True, 'enabled': True, 'group': 'neutron-dhcp-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-dhcp-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'neutron-l3-agent', 'value': {'container_name': 'neutron_l3_agent', 'image': 'kolla/neutron-l3-agent:14.6.0', 'privileged': True, 'enabled': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-l3-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-sriov-agent', 'value': {'container_name': 'neutron_sriov_agent', 'image': 'kolla/neutron-sriov-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-sriov-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-mlnx-agent', 'value': {'container_name': 'neutron_mlnx_agent', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-mlnx-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-eswitchd', 'value': {'container_name': 'neutron_eswitchd', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-eswitchd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/run/libvirt:/run/libvirt:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+changed: [localhost] => (item={'key': 'neutron-metadata-agent', 'value': {'container_name': 'neutron_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': True, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-ovn-metadata-agent', 'value': {'container_name': 'neutron_ovn_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-ovn-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/openvswitch:/run/openvswitch:shared', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-bgp-dragent', 'value': {'container_name': 'neutron_bgp_dragent', 'image': 'kolla/neutron-bgp-dragent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-bgp-dragent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-bgp-dragent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-infoblox-ipam-agent', 'value': {'container_name': 'neutron_infoblox_ipam_agent', 'image': 'kolla/neutron-infoblox-ipam-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-infoblox-ipam-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-infoblox-ipam-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metering-agent', 'value': {'container_name': 'neutron_metering_agent', 'image': 'kolla/neutron-metering-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-metering-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metering-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-neutron-agent', 'value': {'container_name': 'ironic_neutron_agent', 'image': 'kolla/ironic-neutron-agent:14.6.0', 'privileged': False, 'enabled': False, 'group': 'ironic-neutron-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/ironic-neutron-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-tls-proxy', 'value': {'container_name': 'neutron_tls_proxy', 'group': 'neutron-server', 'host_in_groups': True, 'enabled': 'no', 'image': 'kolla/haproxy:14.6.0', 'volumes': ['/etc/kolla/neutron-tls-proxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_tls_proxy': {'enabled': False, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}, 'neutron_tls_proxy_external': {'enabled': False, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}}}}) 
+
+TASK [neutron : Copying over neutron_vpnaas.conf] ******************************
+changed: [localhost] => (item={'key': 'neutron-server', 'value': {'container_name': 'neutron_server', 'image': 'kolla/neutron-server:14.6.0', 'enabled': True, 'group': 'neutron-server', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-server/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_server': {'enabled': True, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696'}, 'neutron_server_external': {'enabled': True, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696'}}}})
+skipping: [localhost] => (item={'key': 'neutron-openvswitch-agent', 'value': {'container_name': 'neutron_openvswitch_agent', 'image': 'kolla/neutron-openvswitch-agent:14.6.0', 'enabled': True, 'privileged': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-openvswitch-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/run/openvswitch:/run/openvswitch:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-linuxbridge-agent', 'value': {'container_name': 'neutron_linuxbridge_agent', 'image': 'kolla/neutron-linuxbridge-agent:14.6.0', 'privileged': True, 'enabled': False, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-linuxbridge-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-dhcp-agent', 'value': {'container_name': 'neutron_dhcp_agent', 'image': 'kolla/neutron-dhcp-agent:14.6.0', 'privileged': True, 'enabled': True, 'group': 'neutron-dhcp-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-dhcp-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+changed: [localhost] => (item={'key': 'neutron-l3-agent', 'value': {'container_name': 'neutron_l3_agent', 'image': 'kolla/neutron-l3-agent:14.6.0', 'privileged': True, 'enabled': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-l3-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-sriov-agent', 'value': {'container_name': 'neutron_sriov_agent', 'image': 'kolla/neutron-sriov-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-sriov-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-mlnx-agent', 'value': {'container_name': 'neutron_mlnx_agent', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-mlnx-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-eswitchd', 'value': {'container_name': 'neutron_eswitchd', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-eswitchd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/run/libvirt:/run/libvirt:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metadata-agent', 'value': {'container_name': 'neutron_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': True, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-ovn-metadata-agent', 'value': {'container_name': 'neutron_ovn_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-ovn-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/openvswitch:/run/openvswitch:shared', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-bgp-dragent', 'value': {'container_name': 'neutron_bgp_dragent', 'image': 'kolla/neutron-bgp-dragent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-bgp-dragent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-bgp-dragent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-infoblox-ipam-agent', 'value': {'container_name': 'neutron_infoblox_ipam_agent', 'image': 'kolla/neutron-infoblox-ipam-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-infoblox-ipam-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-infoblox-ipam-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metering-agent', 'value': {'container_name': 'neutron_metering_agent', 'image': 'kolla/neutron-metering-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-metering-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metering-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-neutron-agent', 'value': {'container_name': 'ironic_neutron_agent', 'image': 'kolla/ironic-neutron-agent:14.6.0', 'privileged': False, 'enabled': False, 'group': 'ironic-neutron-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/ironic-neutron-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-tls-proxy', 'value': {'container_name': 'neutron_tls_proxy', 'group': 'neutron-server', 'host_in_groups': True, 'enabled': 'no', 'image': 'kolla/haproxy:14.6.0', 'volumes': ['/etc/kolla/neutron-tls-proxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_tls_proxy': {'enabled': False, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}, 'neutron_tls_proxy_external': {'enabled': False, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}}}}) 
+
+TASK [neutron : Copying over ssh key] ******************************************
+changed: [localhost]
+
+TASK [neutron : Copying over ml2_conf.ini] *************************************
+changed: [localhost] => (item={'key': 'neutron-server', 'value': {'container_name': 'neutron_server', 'image': 'kolla/neutron-server:14.6.0', 'enabled': True, 'group': 'neutron-server', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-server/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_server': {'enabled': True, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696'}, 'neutron_server_external': {'enabled': True, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696'}}}})
+skipping: [localhost] => (item={'key': 'neutron-openvswitch-agent', 'value': {'container_name': 'neutron_openvswitch_agent', 'image': 'kolla/neutron-openvswitch-agent:14.6.0', 'enabled': True, 'privileged': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-openvswitch-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/run/openvswitch:/run/openvswitch:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-linuxbridge-agent', 'value': {'container_name': 'neutron_linuxbridge_agent', 'image': 'kolla/neutron-linuxbridge-agent:14.6.0', 'privileged': True, 'enabled': False, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-linuxbridge-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-dhcp-agent', 'value': {'container_name': 'neutron_dhcp_agent', 'image': 'kolla/neutron-dhcp-agent:14.6.0', 'privileged': True, 'enabled': True, 'group': 'neutron-dhcp-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-dhcp-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-l3-agent', 'value': {'container_name': 'neutron_l3_agent', 'image': 'kolla/neutron-l3-agent:14.6.0', 'privileged': True, 'enabled': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-l3-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-sriov-agent', 'value': {'container_name': 'neutron_sriov_agent', 'image': 'kolla/neutron-sriov-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-sriov-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-mlnx-agent', 'value': {'container_name': 'neutron_mlnx_agent', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-mlnx-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-eswitchd', 'value': {'container_name': 'neutron_eswitchd', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-eswitchd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/run/libvirt:/run/libvirt:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metadata-agent', 'value': {'container_name': 'neutron_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': True, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-ovn-metadata-agent', 'value': {'container_name': 'neutron_ovn_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-ovn-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/openvswitch:/run/openvswitch:shared', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-bgp-dragent', 'value': {'container_name': 'neutron_bgp_dragent', 'image': 'kolla/neutron-bgp-dragent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-bgp-dragent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-bgp-dragent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-infoblox-ipam-agent', 'value': {'container_name': 'neutron_infoblox_ipam_agent', 'image': 'kolla/neutron-infoblox-ipam-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-infoblox-ipam-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-infoblox-ipam-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metering-agent', 'value': {'container_name': 'neutron_metering_agent', 'image': 'kolla/neutron-metering-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-metering-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metering-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-neutron-agent', 'value': {'container_name': 'ironic_neutron_agent', 'image': 'kolla/ironic-neutron-agent:14.6.0', 'privileged': False, 'enabled': False, 'group': 'ironic-neutron-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/ironic-neutron-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-tls-proxy', 'value': {'container_name': 'neutron_tls_proxy', 'group': 'neutron-server', 'host_in_groups': True, 'enabled': 'no', 'image': 'kolla/haproxy:14.6.0', 'volumes': ['/etc/kolla/neutron-tls-proxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_tls_proxy': {'enabled': False, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}, 'neutron_tls_proxy_external': {'enabled': False, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}}}}) 
+
+TASK [neutron : Copying over linuxbridge_agent.ini] ****************************
+skipping: [localhost]
+
+TASK [neutron : Copying over openvswitch_agent.ini] ****************************
+changed: [localhost]
+
+TASK [neutron : Copying over sriov_agent.ini] **********************************
+skipping: [localhost]
+
+TASK [neutron : Copying over mlnx_agent.ini] ***********************************
+skipping: [localhost]
+
+TASK [neutron : Copying over eswitchd.conf] ************************************
+skipping: [localhost]
+
+TASK [neutron : Copying over dhcp_agent.ini] ***********************************
+changed: [localhost]
+
+TASK [neutron : Copying over dnsmasq.conf] *************************************
+changed: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/neutron/templates/dnsmasq.conf.j2)
+
+TASK [neutron : Copying over l3_agent.ini] *************************************
+skipping: [localhost] => (item={'key': 'neutron-server', 'value': {'container_name': 'neutron_server', 'image': 'kolla/neutron-server:14.6.0', 'enabled': True, 'group': 'neutron-server', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-server/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_server': {'enabled': True, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696'}, 'neutron_server_external': {'enabled': True, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696'}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-openvswitch-agent', 'value': {'container_name': 'neutron_openvswitch_agent', 'image': 'kolla/neutron-openvswitch-agent:14.6.0', 'enabled': True, 'privileged': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-openvswitch-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/run/openvswitch:/run/openvswitch:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-linuxbridge-agent', 'value': {'container_name': 'neutron_linuxbridge_agent', 'image': 'kolla/neutron-linuxbridge-agent:14.6.0', 'privileged': True, 'enabled': False, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-linuxbridge-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-dhcp-agent', 'value': {'container_name': 'neutron_dhcp_agent', 'image': 'kolla/neutron-dhcp-agent:14.6.0', 'privileged': True, 'enabled': True, 'group': 'neutron-dhcp-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-dhcp-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+changed: [localhost] => (item={'key': 'neutron-l3-agent', 'value': {'container_name': 'neutron_l3_agent', 'image': 'kolla/neutron-l3-agent:14.6.0', 'privileged': True, 'enabled': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-l3-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-sriov-agent', 'value': {'container_name': 'neutron_sriov_agent', 'image': 'kolla/neutron-sriov-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-sriov-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-mlnx-agent', 'value': {'container_name': 'neutron_mlnx_agent', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-mlnx-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-eswitchd', 'value': {'container_name': 'neutron_eswitchd', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-eswitchd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/run/libvirt:/run/libvirt:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metadata-agent', 'value': {'container_name': 'neutron_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': True, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-ovn-metadata-agent', 'value': {'container_name': 'neutron_ovn_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-ovn-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/openvswitch:/run/openvswitch:shared', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-bgp-dragent', 'value': {'container_name': 'neutron_bgp_dragent', 'image': 'kolla/neutron-bgp-dragent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-bgp-dragent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-bgp-dragent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-infoblox-ipam-agent', 'value': {'container_name': 'neutron_infoblox_ipam_agent', 'image': 'kolla/neutron-infoblox-ipam-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-infoblox-ipam-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-infoblox-ipam-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metering-agent', 'value': {'container_name': 'neutron_metering_agent', 'image': 'kolla/neutron-metering-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-metering-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metering-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-neutron-agent', 'value': {'container_name': 'ironic_neutron_agent', 'image': 'kolla/ironic-neutron-agent:14.6.0', 'privileged': False, 'enabled': False, 'group': 'ironic-neutron-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/ironic-neutron-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-tls-proxy', 'value': {'container_name': 'neutron_tls_proxy', 'group': 'neutron-server', 'host_in_groups': True, 'enabled': 'no', 'image': 'kolla/haproxy:14.6.0', 'volumes': ['/etc/kolla/neutron-tls-proxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_tls_proxy': {'enabled': False, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}, 'neutron_tls_proxy_external': {'enabled': False, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}}}}) 
+
+TASK [neutron : Copying over metadata_agent.ini] *******************************
+changed: [localhost]
+
+TASK [neutron : Copying over neutron_ovn_metadata_agent.ini] *******************
+skipping: [localhost]
+
+TASK [neutron : Copying over metering_agent.ini] *******************************
+skipping: [localhost]
+
+TASK [neutron : Copying over ironic_neutron_agent.ini] *************************
+skipping: [localhost]
+
+TASK [neutron : Copying over bgp_dragent.ini] **********************************
+skipping: [localhost]
+
+TASK [neutron : Copying over nsx.ini] ******************************************
+skipping: [localhost]
+
+TASK [neutron : Copy neutron-l3-agent-wrapper script] **************************
+changed: [localhost]
+
+TASK [neutron : Copying over extra ml2 plugins] ********************************
+
+TASK [neutron : Copying over neutron-tls-proxy.cfg] ****************************
+skipping: [localhost] => (item=/usr/local/share/kolla-ansible/ansible/roles/neutron/templates/neutron-tls-proxy.cfg.j2) 
+
+TASK [neutron : Check neutron containers] **************************************
+changed: [localhost] => (item={'key': 'neutron-server', 'value': {'container_name': 'neutron_server', 'image': 'kolla/neutron-server:14.6.0', 'enabled': True, 'group': 'neutron-server', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-server/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_server': {'enabled': True, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696'}, 'neutron_server_external': {'enabled': True, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696'}}}})
+changed: [localhost] => (item={'key': 'neutron-openvswitch-agent', 'value': {'container_name': 'neutron_openvswitch_agent', 'image': 'kolla/neutron-openvswitch-agent:14.6.0', 'enabled': True, 'privileged': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-openvswitch-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', '/run/openvswitch:/run/openvswitch:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-linuxbridge-agent', 'value': {'container_name': 'neutron_linuxbridge_agent', 'image': 'kolla/neutron-linuxbridge-agent:14.6.0', 'privileged': True, 'enabled': False, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-linuxbridge-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+changed: [localhost] => (item={'key': 'neutron-dhcp-agent', 'value': {'container_name': 'neutron_dhcp_agent', 'image': 'kolla/neutron-dhcp-agent:14.6.0', 'privileged': True, 'enabled': True, 'group': 'neutron-dhcp-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-dhcp-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+changed: [localhost] => (item={'key': 'neutron-l3-agent', 'value': {'container_name': 'neutron_l3_agent', 'image': 'kolla/neutron-l3-agent:14.6.0', 'privileged': True, 'enabled': True, 'environment': {'KOLLA_LEGACY_IPTABLES': 'false'}, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-l3-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', '/lib/modules:/lib/modules:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-sriov-agent', 'value': {'container_name': 'neutron_sriov_agent', 'image': 'kolla/neutron-sriov-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-sriov-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-mlnx-agent', 'value': {'container_name': 'neutron_mlnx_agent', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-mlnx-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-eswitchd', 'value': {'container_name': 'neutron_eswitchd', 'image': 'kolla/neutron-mlnx-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-eswitchd/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '/run/libvirt:/run/libvirt:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+changed: [localhost] => (item={'key': 'neutron-metadata-agent', 'value': {'container_name': 'neutron_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': True, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'neutron_metadata_socket:/var/lib/neutron/kolla/', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}})
+skipping: [localhost] => (item={'key': 'neutron-ovn-metadata-agent', 'value': {'container_name': 'neutron_ovn_metadata_agent', 'image': 'kolla/neutron-metadata-agent:14.6.0', 'privileged': True, 'enabled': False, 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-ovn-metadata-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', 'neutron_metadata_socket:/var/lib/neutron/kolla/', '/run/openvswitch:/run/openvswitch:shared', '/run/netns:/run/netns:shared', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-bgp-dragent', 'value': {'container_name': 'neutron_bgp_dragent', 'image': 'kolla/neutron-bgp-dragent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-bgp-dragent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-bgp-dragent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-infoblox-ipam-agent', 'value': {'container_name': 'neutron_infoblox_ipam_agent', 'image': 'kolla/neutron-infoblox-ipam-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-infoblox-ipam-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-infoblox-ipam-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'neutron-metering-agent', 'value': {'container_name': 'neutron_metering_agent', 'image': 'kolla/neutron-metering-agent:14.6.0', 'privileged': True, 'enabled': False, 'group': 'neutron-metering-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/neutron-metering-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/', ''], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}}}) 
+skipping: [localhost] => (item={'key': 'ironic-neutron-agent', 'value': {'container_name': 'ironic_neutron_agent', 'image': 'kolla/ironic-neutron-agent:14.6.0', 'privileged': False, 'enabled': False, 'group': 'ironic-neutron-agent', 'host_in_groups': True, 'volumes': ['/etc/kolla/ironic-neutron-agent/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}}}) 
+skipping: [localhost] => (item={'key': 'neutron-tls-proxy', 'value': {'container_name': 'neutron_tls_proxy', 'group': 'neutron-server', 'host_in_groups': True, 'enabled': 'no', 'image': 'kolla/haproxy:14.6.0', 'volumes': ['/etc/kolla/neutron-tls-proxy/:/var/lib/kolla/config_files/:ro', '/etc/localtime:/etc/localtime:ro', '', 'kolla_logs:/var/log/kolla/'], 'dimensions': {'ulimits': {'nofile': {'soft': 1048576, 'hard': 1048576}}}, 'healthcheck': {'interval': '30', 'retries': '3', 'start_period': '5', 'test': 'NONE', 'timeout': '30'}, 'haproxy': {'neutron_tls_proxy': {'enabled': False, 'mode': 'http', 'external': False, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}, 'neutron_tls_proxy_external': {'enabled': False, 'mode': 'http', 'external': True, 'port': '9696', 'listen_port': '9696', 'tls_backend': 'yes'}}}}) 
+
+TASK [neutron : include_tasks] *************************************************
+skipping: [localhost]
+
+TASK [neutron : Creating Neutron database] *************************************
+changed: [localhost]
+
+TASK [neutron : Creating Neutron database user and setting permissions] ********
+changed: [localhost]
+
+TASK [neutron : Running Neutron bootstrap container] ***************************
+changed: [localhost]
+
+TASK [neutron : Flush Handlers] ************************************************
+
+RUNNING HANDLER [neutron : Restart neutron-server container] *******************
+changed: [localhost]
+
+RUNNING HANDLER [neutron : Restart neutron-openvswitch-agent container] ********
+changed: [localhost]
+
+RUNNING HANDLER [neutron : Restart neutron-dhcp-agent container] ***************
+changed: [localhost]
+
+RUNNING HANDLER [neutron : Restart neutron-l3-agent container] *****************
+changed: [localhost]
+
+RUNNING HANDLER [neutron : Restart neutron-metadata-agent container] ***********
+changed: [localhost]
+
+PLAY [Apply role kuryr] ********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role hacluster] ****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role heat] *********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role horizon] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role murano] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role solum] ********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role magnum] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role mistral] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role sahara] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role manila] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role gnocchi] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role ceilometer] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role aodh] *********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role barbican] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role cyborg] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role designate] ****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role trove] ********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role watcher] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role grafana] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role cloudkitty] ***************************************************
+skipping: no hosts matched
+
+PLAY [Apply role freezer] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role senlin] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role tacker] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role octavia] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role zun] **********************************************************
+skipping: no hosts matched
+
+PLAY [Apply role skydive] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role vitrage] ******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role blazar] *******************************************************
+skipping: no hosts matched
+
+PLAY [Apply role masakari] *****************************************************
+skipping: no hosts matched
+
+PLAY [Apply role venus] ********************************************************
+skipping: no hosts matched
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=125  changed=99   unreachable=0    failed=0    skipped=55   rescued=0    ignored=0   
+
