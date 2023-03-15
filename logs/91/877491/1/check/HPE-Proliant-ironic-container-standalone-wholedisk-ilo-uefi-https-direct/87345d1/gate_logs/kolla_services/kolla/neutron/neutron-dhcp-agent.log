@@ -1,0 +1,85 @@
+2023-03-15 19:23:30.863 6 INFO neutron.common.config [-] Logging enabled!
+2023-03-15 19:23:30.866 6 INFO neutron.common.config [-] /var/lib/kolla/venv/bin/neutron-dhcp-agent version 21.0.1.dev72
+2023-03-15 19:23:33.371 6 INFO neutron.agent.dhcp.agent [-] Synchronizing state
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent [None req-2875fa25-0019-4c5a-9a82-374da111d988 - - - - - -] Failed reporting state!: oslo_messaging.exceptions.MessagingTimeout: Timed out waiting for a reply to message ID aef53f055bd9442bb52376794bce2acb
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent Traceback (most recent call last):
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 441, in get
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     return self._queues[msg_id].get(block=True, timeout=timeout)
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/eventlet/queue.py", line 322, in get
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     return waiter.wait()
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/eventlet/queue.py", line 141, in wait
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     return get_hub().switch()
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/eventlet/hubs/hub.py", line 313, in switch
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     return self.greenlet.switch()
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent _queue.Empty
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent 
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent During handling of the above exception, another exception occurred:
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent 
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent Traceback (most recent call last):
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/neutron/agent/dhcp/agent.py", line 1048, in _report_state
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     agent_status = self.state_rpc.report_state(
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/neutron/agent/rpc.py", line 105, in report_state
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     return method(context, 'report_state', **kwargs)
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/rpc/client.py", line 189, in call
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     result = self.transport._send(
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/transport.py", line 123, in _send
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     return self._driver.send(target, ctxt, message,
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 689, in send
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     return self._send(target, ctxt, message, wait_for_reply, timeout,
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 678, in _send
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     result = self._waiter.wait(msg_id, timeout,
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 567, in wait
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     message = self.waiters.get(msg_id, timeout=timeout)
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 443, in get
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent     raise oslo_messaging.MessagingTimeout(
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent oslo_messaging.exceptions.MessagingTimeout: Timed out waiting for a reply to message ID aef53f055bd9442bb52376794bce2acb
+2023-03-15 19:24:03.455 6 ERROR neutron.agent.dhcp.agent 
+2023-03-15 19:24:03.752 6 WARNING oslo.service.loopingcall [None req-2875fa25-0019-4c5a-9a82-374da111d988 - - - - - -] Function 'neutron.agent.dhcp.agent.DhcpAgentWithStateReport._report_state' run outlasted interval by 0.41 sec
+2023-03-15 19:24:03.895 6 INFO neutron.agent.dhcp.agent [None req-ec7c6564-2389-4986-8f5d-6c04c22f909f - - - - - -] Successfully reported state after a previous failure.
+2023-03-15 19:24:33.463 6 ERROR neutron_lib.rpc [None req-d34dc8b4-2e8b-4789-9cdf-090779027406 - - - - - -] Timeout in RPC method get_active_networks_info. Waiting for 29 seconds before next attempt. If the server is not down, consider increasing the rpc_response_timeout option as Neutron server(s) may be overloaded and unable to respond quickly enough.: oslo_messaging.exceptions.MessagingTimeout: Timed out waiting for a reply to message ID caf02b08d56c466790f6389c71b71150
+2023-03-15 19:24:33.465 6 WARNING neutron_lib.rpc [None req-d34dc8b4-2e8b-4789-9cdf-090779027406 - - - - - -] Increasing timeout for get_active_networks_info calls to 120 seconds. Restart the agent to restore it to the default value.: oslo_messaging.exceptions.MessagingTimeout: Timed out waiting for a reply to message ID caf02b08d56c466790f6389c71b71150
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent [None req-d34dc8b4-2e8b-4789-9cdf-090779027406 - - - - - -] Unable to sync network state.: oslo_messaging.exceptions.MessagingTimeout: Timed out waiting for a reply to message ID caf02b08d56c466790f6389c71b71150
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent Traceback (most recent call last):
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 441, in get
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     return self._queues[msg_id].get(block=True, timeout=timeout)
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/eventlet/queue.py", line 322, in get
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     return waiter.wait()
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/eventlet/queue.py", line 141, in wait
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     return get_hub().switch()
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/eventlet/hubs/hub.py", line 313, in switch
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     return self.greenlet.switch()
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent _queue.Empty
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent 
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent During handling of the above exception, another exception occurred:
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent 
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent Traceback (most recent call last):
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/neutron/agent/dhcp/agent.py", line 273, in sync_state
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     active_networks = self.plugin_rpc.get_active_networks_info(
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/neutron/agent/dhcp/agent.py", line 829, in get_active_networks_info
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     networks = cctxt.call(self.context, 'get_active_networks_info',
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/neutron_lib/rpc.py", line 180, in call
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     time.sleep(wait)
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_utils/excutils.py", line 227, in __exit__
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     self.force_reraise()
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_utils/excutils.py", line 200, in force_reraise
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     raise self.value
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/neutron_lib/rpc.py", line 157, in call
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     return self._original_context.call(ctxt, method, **kwargs)
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/rpc/client.py", line 189, in call
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     result = self.transport._send(
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/transport.py", line 123, in _send
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     return self._driver.send(target, ctxt, message,
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 689, in send
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     return self._send(target, ctxt, message, wait_for_reply, timeout,
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 678, in _send
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     result = self._waiter.wait(msg_id, timeout,
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 567, in wait
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     message = self.waiters.get(msg_id, timeout=timeout)
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent   File "/var/lib/kolla/venv/lib/python3.9/site-packages/oslo_messaging/_drivers/amqpdriver.py", line 443, in get
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent     raise oslo_messaging.MessagingTimeout(
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent oslo_messaging.exceptions.MessagingTimeout: Timed out waiting for a reply to message ID caf02b08d56c466790f6389c71b71150
+2023-03-15 19:25:02.451 6 ERROR neutron.agent.dhcp.agent 
+2023-03-15 19:25:02.520 6 INFO neutron.agent.dhcp.agent [-] Synchronizing state
+2023-03-15 19:25:02.591 6 INFO neutron.agent.dhcp.agent [None req-d34dc8b4-2e8b-4789-9cdf-090779027406 - - - - - -] DHCP agent started
+2023-03-15 19:25:02.719 6 INFO neutron.agent.dhcp.agent [None req-6cf68d84-acb9-41ee-9c94-3821b85b64ad - - - - - -] All active networks have been fetched through RPC.
+2023-03-15 19:25:02.720 6 INFO neutron.agent.dhcp.agent [None req-6cf68d84-acb9-41ee-9c94-3821b85b64ad - - - - - -] Synchronizing state complete
